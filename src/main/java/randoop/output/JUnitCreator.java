@@ -122,7 +122,7 @@ public class JUnitCreator {
     return junitCreator;
   }
 
-  private JUnitCreator(@Det String packageName) {
+  private JUnitCreator(String packageName) {
     assert !Objects.equals(packageName, "");
     this.packageName = packageName;
     this.classMethodCounts = new LinkedHashMap<>();

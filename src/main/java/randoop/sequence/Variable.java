@@ -14,7 +14,7 @@ public class Variable implements Comparable<Variable> {
   // The sequence that creates this value.
   public final Sequence sequence;
 
-  public Variable(@Det Sequence owner, @Det int i) {
+  public Variable(Sequence owner, int i) {
     if (owner == null) throw new IllegalArgumentException("missing owner");
     if (i < 0) {
       throw new IllegalArgumentException("negative index: " + i);

@@ -15,7 +15,7 @@ public final class OneMoreElementList<T extends @Det Object>
   public final SimpleList<T> list;
   public final int size;
 
-  public OneMoreElementList(@Det SimpleList<T> list, T extraElement) {
+  public OneMoreElementList(SimpleList<T> list, T extraElement) {
     this.list = list;
     this.lastElement = extraElement;
     this.size = list.size() + 1;

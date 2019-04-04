@@ -17,7 +17,7 @@ public class UniformRandomMethodSelection implements TypedOperationSelector {
    *
    * @param operations methods under test
    */
-  public UniformRandomMethodSelection(@Det List<TypedOperation> operations) {
+  public UniformRandomMethodSelection(List<TypedOperation> operations) {
     // Temporary implementation note:  a copy is not made.
     // Doing so causes various system tests to fail due to changes in coverage. We discovered that
     // this was caused by {@link ForwardGenerator} which was removing parameter-less operations

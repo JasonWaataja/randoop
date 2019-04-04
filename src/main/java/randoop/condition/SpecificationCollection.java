@@ -76,8 +76,8 @@ public class SpecificationCollection {
    *     specification
    */
   SpecificationCollection(
-      @Det Map<AccessibleObject, OperationSpecification> specificationMap,
-      @Det MultiMap<OperationSignature, Method> signatureToMethods,
+      Map<AccessibleObject, OperationSpecification> specificationMap,
+      MultiMap<OperationSignature, Method> signatureToMethods,
       @OrderNonDet Map<AccessibleObject, @OrderNonDet Set<Method>> overridden) {
     this.specificationMap = specificationMap;
     this.signatureToMethods = signatureToMethods;

@@ -64,7 +64,7 @@ public class ReflectionManager {
    *
    * @param predicate the predicate to indicate whether classes and class members should be visited
    */
-  public ReflectionManager(@Det VisibilityPredicate predicate) {
+  public ReflectionManager(VisibilityPredicate predicate) {
     this.predicate = predicate;
     this.visitors = new ArrayList<>();
   }

@@ -32,7 +32,7 @@ public class ArrayCreation extends CallableOperation {
    *
    * @param arrayType the type of the created array
    */
-  ArrayCreation(@Det ArrayType arrayType) {
+  ArrayCreation(ArrayType arrayType) {
     this.elementType = arrayType.getElementType();
     this.componentType = arrayType.getComponentType();
     this.dimensions = arrayType.getDimensions();

@@ -28,7 +28,7 @@ public final class Execution {
    *
    * @param owner the executed sequence
    */
-  public Execution(@Det Sequence owner) {
+  public Execution(Sequence owner) {
     this.outcomes = new ArrayList<>(owner.size());
     for (int i = 0; i < owner.size(); i++) {
       outcomes.add(NotExecuted.create());

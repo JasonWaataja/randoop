@@ -41,9 +41,7 @@ public class ProgressDisplay extends Thread {
   private AbstractGenerator generator;
 
   public ProgressDisplay(
-      @Det AbstractGenerator generator,
-      @Det RandoopListenerManager listenerMgr,
-      @Det Mode outputMode) {
+      AbstractGenerator generator, RandoopListenerManager listenerMgr, Mode outputMode) {
     super("randoop.util.ProgressDisplay");
     if (generator == null) {
       throw new IllegalArgumentException("generator is null");

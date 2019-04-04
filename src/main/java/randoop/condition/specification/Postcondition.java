@@ -1,7 +1,6 @@
 package randoop.condition.specification;
 
 import java.util.Objects;
-import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
 
 /**
@@ -52,7 +51,7 @@ public class Postcondition extends SpecificationClause {
    * @param guard the {@link Guard} for the constructed specification
    * @param property the {@link Property} for the constructed specification
    */
-  public Postcondition(@Det String description, @Det Guard guard, @Det Property property) {
+  public Postcondition(String description, Guard guard, Property property) {
     super(description, guard);
     this.property = property;
   }

@@ -23,7 +23,7 @@ public class RunnerThread extends Thread {
    *
    * @param threadGroup the group for this thread
    */
-  RunnerThread(@Det ThreadGroup threadGroup) {
+  RunnerThread(ThreadGroup threadGroup) {
     super(threadGroup, "randoop.util.RunnerThread");
     this.code = null;
     this.runFinished = false;

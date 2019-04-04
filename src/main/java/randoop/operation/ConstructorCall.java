@@ -39,7 +39,7 @@ public final class ConstructorCall extends CallableOperation {
    *
    * @param constructor reflective object for a constructor
    */
-  public ConstructorCall(@Det Constructor<?> constructor) {
+  public ConstructorCall(Constructor<?> constructor) {
     if (constructor == null) throw new IllegalArgumentException("constructor should not be null.");
     this.constructor = constructor;
     this.constructor.setAccessible(true);

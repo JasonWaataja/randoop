@@ -1231,7 +1231,7 @@ public class Minimize extends CommandHandler {
      * @param stdout standard output
      * @param errout error output
      */
-    Outputs(@Det String command, @Det int exitValue, @Det String stdout, @Det String errout) {
+    Outputs(String command, int exitValue, String stdout, String errout) {
       this.command = command;
       this.exitValue = exitValue;
       this.stdout = stdout;
@@ -1246,7 +1246,7 @@ public class Minimize extends CommandHandler {
      * @param stdout standard output
      * @param errout error output
      */
-    Outputs(@Det CommandLine command, @Det int exitValue, @Det String stdout, @Det String errout) {
+    Outputs(CommandLine command, int exitValue, String stdout, String errout) {
       this(command.toString(), exitValue, stdout, errout);
     }
 

@@ -20,7 +20,7 @@ public class ReferenceArgument extends TypeArgument {
    *
    * @param referenceType the {@link ReferenceType}
    */
-  private ReferenceArgument(@Det ReferenceType referenceType) {
+  private ReferenceArgument(ReferenceType referenceType) {
     this.referenceType = referenceType;
   }
 

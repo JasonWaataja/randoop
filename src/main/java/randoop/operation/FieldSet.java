@@ -34,7 +34,7 @@ public class FieldSet extends CallableOperation {
    * @param field the field object to be set by setter statements
    * @throws IllegalArgumentException if field is static final
    */
-  public FieldSet(@Det AccessibleField field) {
+  public FieldSet(AccessibleField field) {
     if (field.isFinal()) {
       throw new IllegalArgumentException("Field may not be final for FieldSet");
     }

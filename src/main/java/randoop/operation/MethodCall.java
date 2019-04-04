@@ -55,7 +55,7 @@ public final class MethodCall extends CallableOperation {
    *
    * @param method the reflective method object
    */
-  public MethodCall(@Det Method method) {
+  public MethodCall(Method method) {
     if (method == null) {
       throw new IllegalArgumentException("method should not be null.");
     }

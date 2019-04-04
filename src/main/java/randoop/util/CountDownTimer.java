@@ -9,7 +9,7 @@ public class CountDownTimer {
   private long totalTime;
   private @NonDet long startTime;
 
-  private @NonDet CountDownTimer(@Det long timeMillis) {
+  private @NonDet CountDownTimer(long timeMillis) {
     this.totalTime = timeMillis;
     this.startTime = System.currentTimeMillis();
   }

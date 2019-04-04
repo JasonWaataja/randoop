@@ -105,7 +105,7 @@ public class ExecutableSequence {
    *
    * @param sequence the underlying sequence for this executable sequence
    */
-  public ExecutableSequence(@Det Sequence sequence) {
+  public ExecutableSequence(Sequence sequence) {
     this.sequence = sequence;
     this.executionResults = new Execution(sequence);
   }

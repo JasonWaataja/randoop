@@ -22,7 +22,7 @@ class ClassLiteralExtractor extends DefaultClassVisitor {
 
   private MultiMap<ClassOrInterfaceType, Sequence> literalMap;
 
-  ClassLiteralExtractor(@Det MultiMap<ClassOrInterfaceType, Sequence> literalMap) {
+  ClassLiteralExtractor(MultiMap<ClassOrInterfaceType, Sequence> literalMap) {
     this.literalMap = literalMap;
   }
 

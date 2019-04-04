@@ -38,7 +38,7 @@ public class CheckpointingMultiMap<T1 extends @Det Object, T2 extends @Det Objec
     final T1 key;
     final T2 val;
 
-    OpKeyVal(final @Det Ops op, final T1 key, final T2 val) {
+    OpKeyVal(final Ops op, final T1 key, final T2 val) {
       this.op = op;
       this.key = key;
       this.val = val;

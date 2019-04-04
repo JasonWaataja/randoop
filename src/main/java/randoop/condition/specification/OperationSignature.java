@@ -73,9 +73,7 @@ public class OperationSignature {
    * @param parameterTypes the list of fully-qualified raw parameter type names
    */
   private OperationSignature(
-      @ClassGetName @Det String classname,
-      @Det String name,
-      @Det List<@ClassGetName String> parameterTypes) {
+      @ClassGetName String classname, String name, List<@ClassGetName String> parameterTypes) {
     this.classname = classname;
     this.name = name;
     this.parameterTypes = parameterTypes;

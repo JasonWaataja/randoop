@@ -30,7 +30,7 @@ class TypeExtractor extends DefaultClassVisitor {
    * @param inputTypes the set of concrete types
    * @param predicate the visibility predicate
    */
-  TypeExtractor(@Det Set<Type> inputTypes, @Det VisibilityPredicate predicate) {
+  TypeExtractor(Set<Type> inputTypes, VisibilityPredicate predicate) {
     this.inputTypes = inputTypes;
     this.predicate = predicate;
   }

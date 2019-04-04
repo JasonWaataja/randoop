@@ -23,7 +23,7 @@ class CheckRepExtractor extends DefaultClassVisitor {
    *
    * @param contracts the set of contracts
    */
-  CheckRepExtractor(@Det ContractSet contracts) {
+  CheckRepExtractor(ContractSet contracts) {
     this.contracts = contracts;
   }
 

@@ -31,7 +31,7 @@ public class OperationHistoryLogger implements OperationHistoryLogInterface {
    *
    * @param writer the {@code PrintWriter} for writing the table from the created operation history
    */
-  public OperationHistoryLogger(@Det PrintWriter writer) {
+  public OperationHistoryLogger(PrintWriter writer) {
     this.writer = writer;
     this.operationMap = new HashMap<>();
   }

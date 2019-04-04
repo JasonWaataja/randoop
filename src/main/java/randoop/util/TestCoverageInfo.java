@@ -19,13 +19,13 @@ public class TestCoverageInfo {
     final int covered;
     final int inMethod;
 
-    BranchCov(@Det int covered, @Det int inMethod) {
+    BranchCov(int covered, int inMethod) {
       this.covered = covered;
       this.inMethod = inMethod;
     }
   }
 
-  public TestCoverageInfo(@Det int totalBranches, @Det Map<String, Set<Integer>> map) {
+  public TestCoverageInfo(int totalBranches, Map<String, Set<Integer>> map) {
     if (totalBranches < 0) throw new IllegalArgumentException();
     branchTrue = new int[totalBranches];
     branchFalse = new int[totalBranches];

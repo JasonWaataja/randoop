@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
 import org.checkerframework.checker.determinism.qual.OrderNonDet;
 import org.plumelib.util.UtilPlume;
@@ -52,8 +51,7 @@ public class Identifiers {
    * @param parameters the list of identifiers for the operation formal parameters
    * @param returnName the return name
    */
-  public Identifiers(
-      @Det String receiverName, @Det List<String> parameters, @Det String returnName) {
+  public Identifiers(String receiverName, List<String> parameters, String returnName) {
     this.receiverName = receiverName;
     this.parameters = parameters;
     this.returnName = returnName;
@@ -65,7 +63,7 @@ public class Identifiers {
    *
    * @param parameters the list of identifiers for the operation parameters
    */
-  public Identifiers(@Det List<String> parameters) {
+  public Identifiers(List<String> parameters) {
     this("receiver", parameters, "result");
   }
 

@@ -23,7 +23,7 @@ class UncheckedCast extends CallableOperation {
    *
    * @param type the cast type
    */
-  UncheckedCast(@Det Type type) {
+  UncheckedCast(Type type) {
     this.type = type;
   }
 

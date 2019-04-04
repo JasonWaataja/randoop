@@ -1,7 +1,5 @@
 package randoop.condition;
 
-import org.checkerframework.checker.determinism.qual.Det;
-
 /**
  * Represents a pair of an executable guard and an executable property.
  *
@@ -25,8 +23,7 @@ public class GuardPropertyPair {
    * @param property the {@link ExecutableBooleanExpression} to be evaluated after the operation is
    *     called
    */
-  GuardPropertyPair(
-      @Det ExecutableBooleanExpression guard, @Det ExecutableBooleanExpression property) {
+  GuardPropertyPair(ExecutableBooleanExpression guard, ExecutableBooleanExpression property) {
     this.guard = guard;
     this.property = property;
   }

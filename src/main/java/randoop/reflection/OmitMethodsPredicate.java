@@ -37,7 +37,7 @@ public class OmitMethodsPredicate {
    * @param omitPatterns a list of regular expressions for method signatures. Null or the empty
    *     least mean to do no omissions.
    */
-  public OmitMethodsPredicate(@Det List<Pattern> omitPatterns) {
+  public OmitMethodsPredicate(List<Pattern> omitPatterns) {
     if (omitPatterns == null) {
       this.omitPatterns = new ArrayList<>();
     } else {

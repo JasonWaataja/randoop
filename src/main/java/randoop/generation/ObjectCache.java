@@ -9,7 +9,7 @@ public class ObjectCache {
 
   private StateMatcher sm;
 
-  public ObjectCache(@Det StateMatcher sm) {
+  public ObjectCache(StateMatcher sm) {
     this.sm = sm;
   }
 

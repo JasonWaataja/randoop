@@ -93,7 +93,7 @@ public class SequenceCollection {
    *
    * @param initialSequences the initial collection of sequences
    */
-  public SequenceCollection(@Det Collection<Sequence> initialSequences) {
+  public SequenceCollection(Collection<Sequence> initialSequences) {
     if (initialSequences == null) throw new IllegalArgumentException("initialSequences is null.");
     this.sequenceMap = new LinkedHashMap<>();
     this.typeSet = new SubTypeSet(false);

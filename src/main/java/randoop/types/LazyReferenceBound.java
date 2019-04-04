@@ -17,7 +17,7 @@ import org.checkerframework.checker.determinism.qual.NonDet;
  */
 class LazyReferenceBound extends ReferenceBound {
 
-  LazyReferenceBound(@Det ReferenceType boundType) {
+  LazyReferenceBound(ReferenceType boundType) {
     super(boundType);
   }
 

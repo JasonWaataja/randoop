@@ -137,15 +137,15 @@ public abstract class ReflectionCode {
   static final class ReflectionCodeException extends IllegalStateException {
     private static final long serialVersionUID = -7508201027241079866L;
 
-    ReflectionCodeException(@Det String msg) {
+    ReflectionCodeException(String msg) {
       super(msg);
     }
 
-    ReflectionCodeException(@Det String msg, @Det Throwable cause) {
+    ReflectionCodeException(String msg, Throwable cause) {
       super(msg, cause);
     }
 
-    ReflectionCodeException(@Det Throwable cause) {
+    ReflectionCodeException(Throwable cause) {
       super(cause);
     }
   }

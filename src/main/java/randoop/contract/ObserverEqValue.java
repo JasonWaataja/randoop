@@ -51,7 +51,7 @@ public final class ObserverEqValue extends ObjectContract {
     return Objects.hash(observer, value);
   }
 
-  public ObserverEqValue(@Det TypedOperation observer, @Det Object value) {
+  public ObserverEqValue(TypedOperation observer, Object value) {
     assert observer.isMethodCall() : "Observer must be MethodCall, got " + observer;
     this.observer = observer;
     this.value = value;

@@ -65,8 +65,7 @@ public class FailingTestFilter implements CodeWriter {
    * @param testEnvironment the {@link TestEnvironment} for executing tests during filtering
    * @param javaFileWriter the {@link JavaFileWriter} to write {@code .java} files for the classes
    */
-  public FailingTestFilter(
-      @Det TestEnvironment testEnvironment, @Det JavaFileWriter javaFileWriter) {
+  public FailingTestFilter(TestEnvironment testEnvironment, JavaFileWriter javaFileWriter) {
     this.testEnvironment = testEnvironment;
     this.javaFileWriter = javaFileWriter;
   }
@@ -530,7 +529,7 @@ public class FailingTestFilter implements CodeWriter {
      * @param line the matched line
      * @param group the matched group substring
      */
-    Match(@Det String line, @Det String group) {
+    Match(String line, String group) {
       this.line = line;
       this.group = group;
     }

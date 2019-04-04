@@ -63,9 +63,9 @@ public class ExecutableSpecification {
    * @param guardThrowsPairs the operation throws-specifications
    */
   public ExecutableSpecification(
-      @Det List<ExecutableBooleanExpression> preExpressions,
-      @Det List<GuardPropertyPair> guardPropertyPairs,
-      @Det List<GuardThrowsPair> guardThrowsPairs) {
+      List<ExecutableBooleanExpression> preExpressions,
+      List<GuardPropertyPair> guardPropertyPairs,
+      List<GuardThrowsPair> guardThrowsPairs) {
     this.preExpressions = preExpressions;
     this.guardPropertyPairs = guardPropertyPairs;
     this.guardThrowsPairs = guardThrowsPairs;

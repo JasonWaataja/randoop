@@ -38,7 +38,7 @@ public final class Statement {
    * @param operation the operation of this statement
    * @param inputVariables the variable that are used in this statement
    */
-  public Statement(@Det TypedOperation operation, @Det List<RelativeNegativeIndex> inputVariables) {
+  public Statement(TypedOperation operation, List<RelativeNegativeIndex> inputVariables) {
     this.operation = operation;
     this.inputs = new ArrayList<>(inputVariables);
   }
@@ -48,7 +48,7 @@ public final class Statement {
    *
    * @param operation the operation for action of this statement
    */
-  public Statement(@Det TypedOperation operation) {
+  public Statement(TypedOperation operation) {
     this(operation, new ArrayList<RelativeNegativeIndex>());
   }
 

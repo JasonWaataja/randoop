@@ -14,7 +14,7 @@ class EagerReferenceBound extends ReferenceBound {
    *
    * @param boundType the reference boundType
    */
-  EagerReferenceBound(@Det ReferenceType boundType) {
+  EagerReferenceBound(ReferenceType boundType) {
     super(boundType);
   }
 

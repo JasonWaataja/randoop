@@ -25,16 +25,16 @@ import randoop.util.ReflectionExecutor;
 public abstract class GenInputsAbstract extends CommandHandler {
 
   public GenInputsAbstract(
-      @Det String command,
-      @Det String pitch,
-      @Det String commandGrammar,
-      @Det String where,
-      @Det String summary,
-      @Det List<String> notes,
-      @Det String input,
-      @Det String output,
-      @Det String example,
-      @Det Options options) {
+      String command,
+      String pitch,
+      String commandGrammar,
+      String where,
+      String summary,
+      List<String> notes,
+      String input,
+      String output,
+      String example,
+      Options options) {
     super(command, pitch, commandGrammar, where, summary, notes, input, output, example, options);
   }
 
@@ -437,11 +437,7 @@ public abstract class GenInputsAbstract extends CommandHandler {
      * @param generated_limit the maximum number of sequences to output. Must be non-negative.
      * @param output_limit the maximum number of sequences to generate. Must be non-negative.
      */
-    public Limits(
-        @Det int time_limit,
-        @Det int attempted_limit,
-        @Det int generated_limit,
-        @Det int output_limit) {
+    public Limits(int time_limit, int attempted_limit, int generated_limit, int output_limit) {
       this.time_limit_millis = time_limit * 1000;
       this.attempted_limit = attempted_limit;
       this.generated_limit = generated_limit;

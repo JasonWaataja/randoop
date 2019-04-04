@@ -80,23 +80,23 @@ public class ForwardGenerator extends AbstractGenerator {
   private Set<Object> runtimePrimitivesSeen = new LinkedHashSet<>();
 
   public ForwardGenerator(
-      @Det List<TypedOperation> operations,
-      @Det Set<TypedOperation> observers,
-      GenInputsAbstract.@Det Limits limits,
-      @Det ComponentManager componentManager,
-      @Det RandoopListenerManager listenerManager,
-      @Det Set<ClassOrInterfaceType> classesUnderTest) {
+      List<TypedOperation> operations,
+      Set<TypedOperation> observers,
+      GenInputsAbstract.Limits limits,
+      ComponentManager componentManager,
+      RandoopListenerManager listenerManager,
+      Set<ClassOrInterfaceType> classesUnderTest) {
     this(operations, observers, limits, componentManager, null, listenerManager, classesUnderTest);
   }
 
   public ForwardGenerator(
-      @Det List<TypedOperation> operations,
-      @Det Set<TypedOperation> observers,
-      GenInputsAbstract.@Det Limits limits,
-      @Det ComponentManager componentManager,
-      @Det IStopper stopper,
-      @Det RandoopListenerManager listenerManager,
-      @Det Set<ClassOrInterfaceType> classesUnderTest) {
+      List<TypedOperation> operations,
+      Set<TypedOperation> observers,
+      GenInputsAbstract.Limits limits,
+      ComponentManager componentManager,
+      IStopper stopper,
+      RandoopListenerManager listenerManager,
+      Set<ClassOrInterfaceType> classesUnderTest) {
     super(operations, limits, componentManager, stopper, listenerManager);
 
     this.observers = observers;
@@ -761,7 +761,7 @@ public class ForwardGenerator extends AbstractGenerator {
     final Variable var;
     final Sequence seq;
 
-    VarAndSeq(@Det Variable var, @Det Sequence seq) {
+    VarAndSeq(Variable var, Sequence seq) {
       this.var = var;
       this.seq = seq;
     }

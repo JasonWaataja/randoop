@@ -25,7 +25,7 @@ public abstract class ParameterType extends ReferenceType {
     this.upperBound = new EagerReferenceBound(JavaTypes.OBJECT_TYPE);
   }
 
-  ParameterType(@Det ParameterBound lowerBound, @Det ParameterBound upperBound) {
+  ParameterType(ParameterBound lowerBound, ParameterBound upperBound) {
     this.lowerBound = lowerBound;
     this.upperBound = upperBound;
   }

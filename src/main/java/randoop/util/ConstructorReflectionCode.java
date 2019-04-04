@@ -11,7 +11,7 @@ public final class ConstructorReflectionCode extends ReflectionCode {
   /** If an inner class has a receiver, it is the first element of this array. */
   private final Object[] inputs;
 
-  public ConstructorReflectionCode(@Det Constructor<?> constructor, @Det Object @Det [] inputs) {
+  public ConstructorReflectionCode(Constructor<?> constructor, Object[] inputs) {
     if (constructor == null) {
       throw new IllegalArgumentException("constructor is null");
     }

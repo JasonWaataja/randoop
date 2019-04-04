@@ -36,7 +36,7 @@ public class RecordListReader {
   /** The object in charge of doing whatever is to be done with the record. */
   private final RecordProcessor processor;
 
-  public RecordListReader(@Det String recordType, @Det RecordProcessor proc) {
+  public RecordListReader(String recordType, RecordProcessor proc) {
     if (recordType == null || recordType.length() == 0) {
       throw new IllegalArgumentException(
           "No record type given: " + (recordType == null ? "null" : "\"\""));

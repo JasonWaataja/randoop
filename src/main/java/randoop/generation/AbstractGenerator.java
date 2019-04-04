@@ -142,11 +142,11 @@ public abstract class AbstractGenerator {
    *     Can be null.
    */
   public AbstractGenerator(
-      @Det List<TypedOperation> operations,
-      GenInputsAbstract.@Det Limits limits,
-      @Det ComponentManager componentManager,
-      @Det IStopper stopper,
-      @Det RandoopListenerManager listenerManager) {
+      List<TypedOperation> operations,
+      GenInputsAbstract.Limits limits,
+      ComponentManager componentManager,
+      IStopper stopper,
+      RandoopListenerManager listenerManager) {
     assert operations != null;
 
     this.limits = limits;

@@ -25,7 +25,7 @@ public class GenericClassType extends ParameterizedType {
    *
    * @param rawType the {@code Class} raw type
    */
-  GenericClassType(@Det Class<?> rawType) {
+  GenericClassType(Class<?> rawType) {
     this.rawType = rawType;
     this.parameters = new ArrayList<>();
 

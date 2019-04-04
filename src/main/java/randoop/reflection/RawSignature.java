@@ -41,10 +41,7 @@ public class RawSignature {
    * @param parameterTypes the method parameter types, including the receiver type if any
    */
   public RawSignature(
-      @Det String packageName,
-      @Det String classname,
-      @Det String name,
-      @Det Class<?> @Det [] parameterTypes) {
+      String packageName, String classname, String name, Class<?>[] parameterTypes) {
     assert !Objects.equals(packageName, "");
     this.packageName = packageName;
     this.classname = classname;

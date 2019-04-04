@@ -39,10 +39,10 @@ public class TypedClassOperation extends TypedOperation {
    * @param outputType the output types for the operation
    */
   public TypedClassOperation(
-      @Det CallableOperation operation,
-      @Det ClassOrInterfaceType declaringType,
-      @Det TypeTuple inputTypes,
-      @Det Type outputType) {
+      CallableOperation operation,
+      ClassOrInterfaceType declaringType,
+      TypeTuple inputTypes,
+      Type outputType) {
     super(operation, inputTypes, outputType);
     this.declaringType = declaringType;
   }

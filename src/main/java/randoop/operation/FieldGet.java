@@ -31,7 +31,7 @@ public class FieldGet extends CallableOperation {
    *
    * @param field the {@link AccessibleField} object from which to get values
    */
-  public FieldGet(@Det AccessibleField field) {
+  public FieldGet(AccessibleField field) {
     this.field = field;
   }
 

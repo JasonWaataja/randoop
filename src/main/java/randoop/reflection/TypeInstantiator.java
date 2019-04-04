@@ -37,7 +37,7 @@ public class TypeInstantiator {
    *
    * @param inputTypes the ground types for instantiations
    */
-  public TypeInstantiator(@Det Set<Type> inputTypes) {
+  public TypeInstantiator(Set<Type> inputTypes) {
     this.inputTypes = inputTypes;
   }
 

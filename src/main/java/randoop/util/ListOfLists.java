@@ -28,7 +28,7 @@ public class ListOfLists<T extends @Det Object> implements SimpleList<T>, Serial
   private int totalelements;
 
   @SuppressWarnings({"varargs", "unchecked"}) // heap pollution warning
-  public ListOfLists(@Det SimpleList<T> @Det ... lists) {
+  public ListOfLists(SimpleList<T>... lists) {
     int len = lists.length;
     this.lists = new ArrayList<>(len);
     for (SimpleList<T> sl : lists) {
@@ -46,7 +46,7 @@ public class ListOfLists<T extends @Det Object> implements SimpleList<T>, Serial
     }
   }
 
-  public ListOfLists(@Det List<SimpleList<T>> lists) {
+  public ListOfLists(List<SimpleList<T>> lists) {
     if (lists == null) throw new IllegalArgumentException("param cannot be null");
     this.lists = lists;
     this.cumulativeSize = new int[lists.size()];

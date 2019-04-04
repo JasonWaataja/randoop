@@ -17,8 +17,7 @@ public final class MethodReflectionCode extends ReflectionCode {
 
   private final Object[] inputs;
 
-  public MethodReflectionCode(
-      @Det Method method, @Det Object receiver, @Det Object @Det [] inputs) {
+  public MethodReflectionCode(Method method, Object receiver, Object[] inputs) {
     this.receiver = receiver;
     this.method = method;
     this.inputs = inputs;

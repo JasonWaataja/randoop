@@ -125,11 +125,11 @@ public class RunCommand {
      * @param errorOutputLines the lines of process output to standard error
      */
     Status(
-        @Det List<String> command,
-        @Det int exitStatus,
-        @Det boolean timedOut,
-        @Det List<String> standardOutputLines,
-        @Det List<String> errorOutputLines) {
+        List<String> command,
+        int exitStatus,
+        boolean timedOut,
+        List<String> standardOutputLines,
+        List<String> errorOutputLines) {
       this.command = command;
       this.exitStatus = exitStatus;
       this.timedOut = timedOut;

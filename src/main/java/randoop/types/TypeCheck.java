@@ -23,7 +23,7 @@ public class TypeCheck {
    *
    * @param parameters the list of of type parameters to be checked by the predicate
    */
-  private TypeCheck(@Det List<TypeVariable> parameters) {
+  private TypeCheck(List<TypeVariable> parameters) {
     this.parameters = parameters;
   }
 

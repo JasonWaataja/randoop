@@ -17,10 +17,10 @@ import randoop.types.TypeTuple;
  */
 public class TypedClassOperationWithCast extends TypedClassOperation {
   TypedClassOperationWithCast(
-      @Det CallableOperation op,
-      @Det ClassOrInterfaceType declaringType,
-      @Det TypeTuple inputTypes,
-      @Det Type outputType) {
+      CallableOperation op,
+      ClassOrInterfaceType declaringType,
+      TypeTuple inputTypes,
+      Type outputType) {
     super(op, declaringType, inputTypes, outputType);
   }
 

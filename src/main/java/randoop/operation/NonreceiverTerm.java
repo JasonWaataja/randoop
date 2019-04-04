@@ -43,7 +43,7 @@ public final class NonreceiverTerm extends CallableOperation {
    * @param type the type of the term
    * @param value the value of the term
    */
-  public NonreceiverTerm(@Det Type type, @Det Object value) {
+  public NonreceiverTerm(Type type, Object value) {
     if (type == null) {
       throw new IllegalArgumentException("type should not be null.");
     }

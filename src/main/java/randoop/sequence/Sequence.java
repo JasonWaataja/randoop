@@ -68,7 +68,7 @@ public final class Sequence {
    * @param hashCode the hashcode for the new sequence
    * @param netSize the net size for the new sequence
    */
-  private Sequence(@Det SimpleList<Statement> statements, @NonDet int hashCode, @Det int netSize) {
+  private Sequence(SimpleList<Statement> statements, @NonDet int hashCode, int netSize) {
     if (statements == null) {
       throw new IllegalArgumentException("`statements' argument cannot be null");
     }
@@ -86,7 +86,7 @@ public final class Sequence {
    *
    * @param statements the statements
    */
-  public Sequence(@Det SimpleList<Statement> statements) {
+  public Sequence(SimpleList<Statement> statements) {
     this(statements, computeHashcode(statements), computeNetSize(statements));
   }
 
@@ -1242,7 +1242,7 @@ public final class Sequence {
 
     public final int index;
 
-    RelativeNegativeIndex(@Det int index) {
+    RelativeNegativeIndex(int index) {
       if (index >= 0) {
         throw new IllegalArgumentException("index should be non-positive: " + index);
       }

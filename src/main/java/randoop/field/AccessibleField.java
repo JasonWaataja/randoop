@@ -30,7 +30,7 @@ public class AccessibleField {
    * @param field the field
    * @param declaringType the type for the declaring class of this field
    */
-  public @Det AccessibleField(@Det Field field, @Det ClassOrInterfaceType declaringType) {
+  public AccessibleField(Field field, ClassOrInterfaceType declaringType) {
     this.field = field;
     this.field.setAccessible(true);
     int mods = field.getModifiers() & Modifier.fieldModifiers();

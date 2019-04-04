@@ -18,7 +18,7 @@ public class MultiMap<T1 extends @Det Object, T2 extends @Det Object> implements
     map = new LinkedHashMap<>();
   }
 
-  public MultiMap(@Det int initialCapacity) {
+  public MultiMap(int initialCapacity) {
     map = new LinkedHashMap<>(initialCapacity);
   }
 

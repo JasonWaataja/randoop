@@ -1,6 +1,5 @@
 package randoop;
 
-import org.checkerframework.checker.determinism.qual.Det;
 import randoop.test.Check;
 
 /**
@@ -13,7 +12,7 @@ public class ReplayFailureException extends RuntimeException {
 
   private final Check decoration;
 
-  public ReplayFailureException(String message, @Det Check d) {
+  public ReplayFailureException(String message, Check d) {
     super(message);
     this.decoration = d;
   }

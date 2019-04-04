@@ -10,8 +10,7 @@ public final class ObjectContractReflectionCode extends ReflectionCode {
   final ObjectContract c;
   final Object[] objs;
 
-  public ObjectContractReflectionCode(
-      final @Det ObjectContract c, final @Det Object @Det ... objs) {
+  public ObjectContractReflectionCode(final ObjectContract c, final Object... objs) {
     this.c = c;
     this.objs = objs;
   }

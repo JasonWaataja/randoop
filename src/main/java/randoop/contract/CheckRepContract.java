@@ -50,7 +50,7 @@ public final class CheckRepContract extends ObjectContract {
     return Objects.hash(checkRepMethod);
   }
 
-  public CheckRepContract(@Det Method checkRepMethod) {
+  public CheckRepContract(Method checkRepMethod) {
     if (checkRepMethod == null) {
       throw new IllegalArgumentException("check-rep method cannot be null.");
     }

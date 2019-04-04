@@ -57,8 +57,7 @@ public class ExecutableBooleanExpression {
    * @param contractSource the source code for this expression (see {@link #getContractSource()} for
    *     format details)
    */
-  ExecutableBooleanExpression(
-      @Det Method expressionMethod, @Det String comment, @Det String contractSource) {
+  ExecutableBooleanExpression(Method expressionMethod, String comment, String contractSource) {
     this.expressionMethod = expressionMethod;
     this.comment = comment;
     this.contractSource = contractSource;
@@ -82,12 +81,12 @@ public class ExecutableBooleanExpression {
    * @param compiler the compiler to used to compile the expression method
    */
   ExecutableBooleanExpression(
-      @Det RawSignature signature,
-      @Det String declarations,
-      @Det String expressionSource,
-      @Det String contractSource,
-      @Det String comment,
-      @Det SequenceCompiler compiler) {
+      RawSignature signature,
+      String declarations,
+      String expressionSource,
+      String contractSource,
+      String comment,
+      SequenceCompiler compiler) {
     this(
         createMethod(signature, declarations, expressionSource, compiler), comment, contractSource);
   }

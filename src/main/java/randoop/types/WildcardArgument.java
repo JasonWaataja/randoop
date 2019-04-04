@@ -20,7 +20,7 @@ class WildcardArgument extends TypeArgument {
    *
    * @param argumentType the wildcard type
    */
-  WildcardArgument(@Det WildcardType argumentType) {
+  WildcardArgument(WildcardType argumentType) {
     this.argumentType = argumentType;
   }
 

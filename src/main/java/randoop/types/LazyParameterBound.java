@@ -24,7 +24,7 @@ class LazyParameterBound extends ParameterBound {
    *
    * @param boundType the reflection type for this bound
    */
-  LazyParameterBound(java.lang.reflect.@Det Type boundType) {
+  LazyParameterBound(java.lang.reflect.Type boundType) {
     this.boundType = boundType;
   }
 

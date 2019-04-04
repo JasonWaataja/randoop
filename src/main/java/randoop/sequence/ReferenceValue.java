@@ -1,7 +1,6 @@
 package randoop.sequence;
 
 import java.util.Objects;
-import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
 import randoop.types.ReferenceType;
 
@@ -23,7 +22,7 @@ public final class ReferenceValue {
    * @param type the type of this value
    * @param value the {@link Object} reference to this value
    */
-  ReferenceValue(@Det ReferenceType type, @Det Object value) {
+  ReferenceValue(ReferenceType type, Object value) {
     this.type = type;
     this.value = value;
   }

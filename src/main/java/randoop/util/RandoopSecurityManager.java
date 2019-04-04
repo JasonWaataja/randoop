@@ -17,7 +17,7 @@ public class RandoopSecurityManager extends SecurityManager {
 
   public Status status;
 
-  public RandoopSecurityManager(@Det Status status) {
+  public RandoopSecurityManager(Status status) {
     this.status = status;
   }
 

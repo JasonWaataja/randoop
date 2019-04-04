@@ -54,7 +54,7 @@ public final class TupleSequence {
    * @param variables one index per sequence in {@code sequences}, defining the outputs of the
    *     TupleSequence
    */
-  public TupleSequence(@Det List<Sequence> sequences, @Det List<Integer> variables) {
+  public TupleSequence(List<Sequence> sequences, List<Integer> variables) {
     assert sequences.size() == variables.size() : "must be one variable for each sequence";
     sequence = Sequence.concatenate(sequences);
     outputIndices = new ArrayList<>();

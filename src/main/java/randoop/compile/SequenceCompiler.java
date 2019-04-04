@@ -38,7 +38,7 @@ public class SequenceCompiler {
    * @param classLoader the class loader for this compiler
    * @param options the compiler options
    */
-  public SequenceCompiler(@Det SequenceClassLoader classLoader, @Det List<String> options) {
+  public SequenceCompiler(SequenceClassLoader classLoader, List<String> options) {
     this.classLoader = classLoader;
     this.options = new ArrayList<>(options);
     this.compiler = ToolProvider.getSystemJavaCompiler();

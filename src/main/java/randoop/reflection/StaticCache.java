@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.checkerframework.checker.determinism.qual.Det;
 import randoop.main.RandoopBug;
 
 /** Stores the mutable state of a class, allowing it to be saved, printed and restored. */
@@ -22,7 +21,7 @@ public class StaticCache {
    *
    * @param declaringClass the class
    */
-  public StaticCache(@Det Class<?> declaringClass) {
+  public StaticCache(Class<?> declaringClass) {
     this.declaringClass = declaringClass;
     this.valueMap = new LinkedHashMap<>();
   }

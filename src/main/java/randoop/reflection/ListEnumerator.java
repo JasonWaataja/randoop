@@ -40,7 +40,7 @@ class ListEnumerator<T extends @Det Object> implements Iterator<List<T>> {
    *
    * @param candidates lists of candidate values for each position in generated lists
    */
-  ListEnumerator(@Det List<List<T>> candidates) {
+  ListEnumerator(List<List<T>> candidates) {
     this.candidates = candidates;
     this.iterators = new ArrayList<>(candidates.size());
     this.currentTypes = new ArrayList<>(candidates.size());

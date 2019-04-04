@@ -67,11 +67,11 @@ public class OperationExtractor extends DefaultClassVisitor {
    * @param operationSpecifications the specifications (pre/post/throws-conditions)
    */
   public OperationExtractor(
-      @Det ClassOrInterfaceType classType,
-      @Det ReflectionPredicate reflectionPredicate,
-      @Det OmitMethodsPredicate omitPredicate,
-      @Det VisibilityPredicate visibilityPredicate,
-      @Det SpecificationCollection operationSpecifications) {
+      ClassOrInterfaceType classType,
+      ReflectionPredicate reflectionPredicate,
+      OmitMethodsPredicate omitPredicate,
+      VisibilityPredicate visibilityPredicate,
+      SpecificationCollection operationSpecifications) {
     this.classType = classType;
     this.operations = new TreeSet<>();
     this.reflectionPredicate = reflectionPredicate;
@@ -89,9 +89,9 @@ public class OperationExtractor extends DefaultClassVisitor {
    * @param visibilityPredicate the predicate for test visibility
    */
   public OperationExtractor(
-      @Det ClassOrInterfaceType classType,
-      @Det ReflectionPredicate reflectionPredicate,
-      @Det VisibilityPredicate visibilityPredicate) {
+      ClassOrInterfaceType classType,
+      ReflectionPredicate reflectionPredicate,
+      VisibilityPredicate visibilityPredicate) {
     this(
         classType,
         reflectionPredicate,
@@ -110,10 +110,10 @@ public class OperationExtractor extends DefaultClassVisitor {
    * @param visibilityPredicate the predicate for test visibility
    */
   public OperationExtractor(
-      @Det ClassOrInterfaceType classType,
-      @Det ReflectionPredicate reflectionPredicate,
-      @Det OmitMethodsPredicate omitPredicate,
-      @Det VisibilityPredicate visibilityPredicate) {
+      ClassOrInterfaceType classType,
+      ReflectionPredicate reflectionPredicate,
+      OmitMethodsPredicate omitPredicate,
+      VisibilityPredicate visibilityPredicate) {
     this(classType, reflectionPredicate, omitPredicate, visibilityPredicate, null);
   }
 

@@ -32,7 +32,7 @@ public class TestEnvironment {
    *
    * @param testClasspath the class path for running the tests
    */
-  public TestEnvironment(@Det String testClasspath) {
+  public TestEnvironment(String testClasspath) {
     this.testClasspath = testClasspath;
   }
 

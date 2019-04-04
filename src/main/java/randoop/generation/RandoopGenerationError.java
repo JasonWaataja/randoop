@@ -1,6 +1,5 @@
 package randoop.generation;
 
-import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
 import randoop.operation.TypedOperation;
 
@@ -19,7 +18,7 @@ public class RandoopGenerationError extends Error {
    * @param operation the actual operation
    * @param exception the exception thrown during generation
    */
-  RandoopGenerationError(@Det TypedOperation operation, @Det Throwable exception) {
+  RandoopGenerationError(TypedOperation operation, Throwable exception) {
     this.operation = operation;
     this.exception = exception;
   }

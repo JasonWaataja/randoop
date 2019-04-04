@@ -34,7 +34,7 @@ public class Substitution<T extends @Det Object> {
     rawMap = new LinkedHashMap<>();
   }
 
-  public Substitution(@Det Substitution<T> substitution) {
+  public Substitution(Substitution<T> substitution) {
     map = new LinkedHashMap<>(substitution.map);
     rawMap = new LinkedHashMap<>(substitution.rawMap);
   }

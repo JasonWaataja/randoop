@@ -59,8 +59,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
    * @param inputTypes the input types
    * @param outputType the output types
    */
-  TypedOperation(
-      @Det CallableOperation operation, @Det TypeTuple inputTypes, @Det Type outputType) {
+  TypedOperation(CallableOperation operation, TypeTuple inputTypes, Type outputType) {
     this.operation = operation;
     this.inputTypes = inputTypes;
     this.outputType = outputType;

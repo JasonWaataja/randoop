@@ -13,8 +13,7 @@ public class DeclarationExtractor extends DefaultClassVisitor {
   private ReflectionPredicate reflectionPredicate;
 
   public DeclarationExtractor(
-      @Det Set<ClassOrInterfaceType> classDeclarationTypes,
-      @Det ReflectionPredicate reflectionPredicate) {
+      Set<ClassOrInterfaceType> classDeclarationTypes, ReflectionPredicate reflectionPredicate) {
     this.classDeclarationTypes = classDeclarationTypes;
     this.reflectionPredicate = reflectionPredicate;
   }

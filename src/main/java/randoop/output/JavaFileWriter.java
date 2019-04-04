@@ -24,7 +24,7 @@ public class JavaFileWriter implements CodeWriter {
    *
    * @param junitDirName directory where files are to be written
    */
-  public JavaFileWriter(@Det String junitDirName) {
+  public JavaFileWriter(String junitDirName) {
     this.dirName = junitDirName;
   }
 

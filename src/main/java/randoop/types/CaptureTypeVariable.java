@@ -35,7 +35,7 @@ class CaptureTypeVariable extends TypeVariable {
    *
    * @param wildcard the wildcard argument
    */
-  CaptureTypeVariable(@Det WildcardArgument wildcard) {
+  CaptureTypeVariable(WildcardArgument wildcard) {
     super();
     this.varID = count++;
     this.wildcard = wildcard;
@@ -56,10 +56,7 @@ class CaptureTypeVariable extends TypeVariable {
    * @param upperBound the upper type bound of the variable
    */
   private CaptureTypeVariable(
-      @Det int varID,
-      @Det WildcardArgument wildcard,
-      @Det ParameterBound lowerBound,
-      @Det ParameterBound upperBound) {
+      int varID, WildcardArgument wildcard, ParameterBound lowerBound, ParameterBound upperBound) {
     super(lowerBound, upperBound);
     this.varID = varID;
     this.wildcard = wildcard;

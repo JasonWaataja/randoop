@@ -1,7 +1,5 @@
 package randoop.condition.specification;
 
-import org.checkerframework.checker.determinism.qual.Det;
-
 /**
  * A {@link SpecificationClause} for pre-conditions on the parameters and receiver of an operation.
  * The pre-condition is expressed as a {@link Guard} that is to be checked before the operation is
@@ -33,7 +31,7 @@ public class Precondition extends SpecificationClause {
    * @param description the text description of the param-specification
    * @param guard the guard for the param-specification
    */
-  public Precondition(@Det String description, @Det Guard guard) {
+  public Precondition(String description, Guard guard) {
     super(description, guard);
   }
 

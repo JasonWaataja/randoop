@@ -1,7 +1,5 @@
 package randoop.condition.specification;
 
-import org.checkerframework.checker.determinism.qual.Det;
-
 /**
  * The representation of a boolean expression over the the values of parameters, receiver object,
  * and return value of a method. The identifiers refer to the values after the method is called. The
@@ -35,7 +33,7 @@ public class Property extends AbstractBooleanExpression {
    * @param description the description of this boolean condition
    * @param conditionText the text of the Java code for the created condition
    */
-  public Property(@Det String description, @Det String conditionText) {
+  public Property(String description, String conditionText) {
     super(description, conditionText);
   }
 }

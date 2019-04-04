@@ -27,7 +27,7 @@ public class TypeTuple implements Iterable<Type>, Comparable<TypeTuple> {
    *
    * @param list the list of types
    */
-  public TypeTuple(@Det List<Type> list) {
+  public TypeTuple(List<Type> list) {
     this.list = new ArrayList<>(list);
   }
 
@@ -185,7 +185,7 @@ public class TypeTuple implements Iterable<Type>, Comparable<TypeTuple> {
 
     private Iterator<Type> iterator;
 
-    public TypeIterator(@Det Iterator<Type> iterator) {
+    public TypeIterator(Iterator<Type> iterator) {
       this.iterator = iterator;
     }
 

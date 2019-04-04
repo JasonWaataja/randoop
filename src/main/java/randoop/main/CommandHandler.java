@@ -40,16 +40,16 @@ public abstract class CommandHandler {
    * @param options the command line arguments
    */
   public CommandHandler(
-      @Det String command,
-      @Det String pitch,
-      @Det String commandGrammar,
-      @Det String where,
-      @Det String summary,
-      @Det List<String> notes,
-      @Det String input,
-      @Det String output,
-      @Det String example,
-      @Det Options options) {
+      String command,
+      String pitch,
+      String commandGrammar,
+      String where,
+      String summary,
+      List<String> notes,
+      String input,
+      String output,
+      String example,
+      Options options) {
 
     if ((command == null)) {
       throw new IllegalArgumentException("command cannot be null.");

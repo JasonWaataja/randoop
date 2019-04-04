@@ -1,7 +1,6 @@
 package randoop.generation;
 
 import java.util.List;
-import org.checkerframework.checker.determinism.qual.Det;
 import randoop.sequence.Sequence;
 
 /**
@@ -19,8 +18,7 @@ class InputsAndSuccessFlag {
   public List<Sequence> sequences;
   public List<Integer> indices;
 
-  public InputsAndSuccessFlag(
-      @Det boolean success, @Det List<Sequence> sequences, @Det List<Integer> vars) {
+  public InputsAndSuccessFlag(boolean success, List<Sequence> sequences, List<Integer> vars) {
     this.success = success;
     this.sequences = sequences;
     this.indices = vars;

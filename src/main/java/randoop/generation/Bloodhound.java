@@ -124,8 +124,7 @@ public class Bloodhound implements TypedOperationSelector {
    * @param operations list of operations under test
    * @param classesUnderTest set of classes under test
    */
-  public Bloodhound(
-      @Det List<TypedOperation> operations, @Det Set<ClassOrInterfaceType> classesUnderTest) {
+  public Bloodhound(List<TypedOperation> operations, Set<ClassOrInterfaceType> classesUnderTest) {
     this.operationSimpleList = new SimpleArrayList<>(operations);
     this.coverageTracker = new CoverageTracker(classesUnderTest);
 

@@ -71,12 +71,12 @@ public class SpecificationTranslator {
    * @param compiler the {@link SequenceCompiler} for creating expression methods
    */
   private SpecificationTranslator(
-      @Det RawSignature prestateExpressionSignature,
-      @Det String prestateExpressionDeclaration,
-      @Det RawSignature poststateExpressionSignature,
-      @Det String poststateExpressionDeclaration,
+      RawSignature prestateExpressionSignature,
+      String prestateExpressionDeclaration,
+      RawSignature poststateExpressionSignature,
+      String poststateExpressionDeclaration,
       @OrderNonDet Map<String, String> replacementMap,
-      @Det SequenceCompiler compiler) {
+      SequenceCompiler compiler) {
     this.prestateExpressionSignature = prestateExpressionSignature;
     this.prestateExpressionDeclaration = prestateExpressionDeclaration;
     this.poststateExpressionSignature = poststateExpressionSignature;

@@ -19,7 +19,7 @@ class ArrayElementSet extends CallableOperation {
 
   private final Type elementType;
 
-  ArrayElementSet(@Det Type elementType) {
+  ArrayElementSet(Type elementType) {
     this.elementType = elementType;
   }
 

@@ -27,7 +27,7 @@ public abstract class TypeVariable extends ParameterType {
    * @param lowerBound the lower type bound on this variable
    * @param upperBound the upper type bound on this variable
    */
-  TypeVariable(@Det ParameterBound lowerBound, @Det ParameterBound upperBound) {
+  TypeVariable(ParameterBound lowerBound, ParameterBound upperBound) {
     super(lowerBound, upperBound);
   }
 

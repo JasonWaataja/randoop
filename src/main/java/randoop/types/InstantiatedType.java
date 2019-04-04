@@ -31,7 +31,7 @@ public class InstantiatedType extends ParameterizedType {
    * @param argumentList the list of argument types
    * @throws IllegalArgumentException if either argument is null
    */
-  InstantiatedType(@Det GenericClassType instantiatedType, @Det List<TypeArgument> argumentList) {
+  InstantiatedType(GenericClassType instantiatedType, List<TypeArgument> argumentList) {
     if (instantiatedType == null) {
       throw new IllegalArgumentException("instantiated type must be non-null");
     }

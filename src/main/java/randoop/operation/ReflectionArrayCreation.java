@@ -18,7 +18,7 @@ public class ReflectionArrayCreation extends CallableOperation {
   private final Type elementType;
   private final int length;
 
-  public ReflectionArrayCreation(@Det ArrayType arrayType, @Det int length) {
+  public ReflectionArrayCreation(ArrayType arrayType, int length) {
     this.elementType = arrayType.getComponentType();
     this.length = length;
   }

@@ -36,7 +36,7 @@ public class SequenceJavaFileManager extends ForwardingJavaFileManager<JavaFileM
    * @param fileManager the file manager to which calls are forwarded
    * @param classLoader the class loader to which loaded classes are added
    */
-  SequenceJavaFileManager(@Det JavaFileManager fileManager, @Det SequenceClassLoader classLoader) {
+  SequenceJavaFileManager(JavaFileManager fileManager, SequenceClassLoader classLoader) {
     super(fileManager);
     this.classLoader = classLoader;
     this.fileObjects = new HashMap<>();

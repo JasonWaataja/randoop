@@ -17,7 +17,7 @@ public final class EnumValue extends ObjectContract {
   public final Enum<?> value;
   private final Type type;
 
-  public EnumValue(@Det Enum<?> value) {
+  public EnumValue(Enum<?> value) {
     this.value = value;
     this.type = Type.forClass(value.getDeclaringClass());
   }

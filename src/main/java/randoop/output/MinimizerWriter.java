@@ -20,7 +20,7 @@ public class MinimizerWriter implements CodeWriter {
    *
    * @param javaFileWriter the {@link JavaFileWriter} for writing the classes
    */
-  public MinimizerWriter(@Det JavaFileWriter javaFileWriter) {
+  public MinimizerWriter(JavaFileWriter javaFileWriter) {
     this.javaFileWriter = javaFileWriter;
   }
 

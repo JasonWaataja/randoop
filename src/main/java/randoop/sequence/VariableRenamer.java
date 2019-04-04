@@ -23,7 +23,7 @@ class VariableRenamer {
   /** Maximum depth to concatenate parameterized type names. */
   private static final int VAR_NAME_MAX_DEPTH = 2;
 
-  public VariableRenamer(@Det Sequence sequence) {
+  public VariableRenamer(Sequence sequence) {
     assert sequence != null : "The given sequence to rename cannot be null";
     this.sequence = sequence;
   }

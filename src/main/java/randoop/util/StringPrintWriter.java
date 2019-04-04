@@ -48,7 +48,7 @@ public class StringPrintWriter extends PrintWriter {
    *
    * @param initialSize an int specifying the initial size of the buffer
    */
-  public StringPrintWriter(@Det int initialSize) {
+  public StringPrintWriter(int initialSize) {
     super(new StringWriter(initialSize));
   }
 

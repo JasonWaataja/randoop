@@ -52,7 +52,7 @@ public class MultiVisitor implements ExecutionVisitor {
     }
   }
 
-  public MultiVisitor(@Det List<ExecutionVisitor> visitors) {
+  public MultiVisitor(List<ExecutionVisitor> visitors) {
     this.visitors.addAll(visitors);
   }
 

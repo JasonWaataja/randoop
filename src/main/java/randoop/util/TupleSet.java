@@ -25,7 +25,7 @@ public class TupleSet<E extends @Det Object> {
     this.tupleLength = 0;
   }
 
-  private TupleSet(@Det List<List<E>> tuples, @Det int tupleLength) {
+  private TupleSet(List<List<E>> tuples, int tupleLength) {
     this.tuples = tuples;
     this.tupleLength = tupleLength;
   }

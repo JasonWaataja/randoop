@@ -16,7 +16,7 @@ class ExplicitTypeVariable extends TypeVariable {
    * @param variable the type parameter
    * @param bound the upper bound on the parameter
    */
-  ExplicitTypeVariable(java.lang.reflect.@Det TypeVariable<?> variable, @Det ParameterBound bound) {
+  ExplicitTypeVariable(java.lang.reflect.TypeVariable<?> variable, ParameterBound bound) {
     super(new EagerReferenceBound(JavaTypes.NULL_TYPE), bound);
     this.variable = variable;
   }

@@ -33,7 +33,7 @@ public class FileCompiler {
    *     href="https://docs.oracle.com/javase/7/docs/api/javax/tools/JavaCompiler.html">command-line</a>
    *     arguments for the {@code JavaCompiler}
    */
-  public FileCompiler(@Det List<String> options) {
+  public FileCompiler(List<String> options) {
     this.options = options;
     this.compiler = ToolProvider.getSystemJavaCompiler();
   }
@@ -103,9 +103,9 @@ public class FileCompiler {
      */
     FileCompilerException(
         String message,
-        @Det List<File> sourceFiles,
-        @Det List<String> options,
-        @Det DiagnosticCollector<JavaFileObject> diagnostics) {
+        List<File> sourceFiles,
+        List<String> options,
+        DiagnosticCollector<JavaFileObject> diagnostics) {
       super(message);
       this.sourceFiles = sourceFiles;
       this.options = options;

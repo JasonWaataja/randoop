@@ -21,8 +21,7 @@ class TypedTermOperation extends TypedOperation {
    * @param inputTypes the input types
    * @param outputType the output type
    */
-  TypedTermOperation(
-      @Det CallableOperation operation, @Det TypeTuple inputTypes, @Det Type outputType) {
+  TypedTermOperation(CallableOperation operation, TypeTuple inputTypes, Type outputType) {
     super(operation, inputTypes, outputType);
   }
 
