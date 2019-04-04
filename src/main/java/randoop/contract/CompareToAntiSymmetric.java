@@ -4,7 +4,6 @@ import java.util.Arrays;
 import org.checkerframework.checker.determinism.qual.Det;
 import randoop.Globals;
 import randoop.types.JavaTypes;
-import randoop.types.Type;
 import randoop.types.TypeTuple;
 
 /**
@@ -46,7 +45,7 @@ public class CompareToAntiSymmetric extends ObjectContract {
 
   @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/93
   static TypeTuple inputTypes =
-      new TypeTuple(Arrays.<Type>asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
+      new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
 
   @Override
   public TypeTuple getInputTypes() {

@@ -22,7 +22,7 @@ public final class SeedSequences {
   /** The initial pool of primitive values. */
   @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/93
   private static final List<Object> primitiveSeeds =
-      Arrays.<Object>asList(
+      Arrays.asList(
           (byte) -1,
           (byte) 0,
           (byte) 1,

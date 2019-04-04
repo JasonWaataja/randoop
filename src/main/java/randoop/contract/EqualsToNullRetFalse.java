@@ -4,7 +4,6 @@ import java.util.Arrays;
 import org.checkerframework.checker.determinism.qual.Det;
 import randoop.Globals;
 import randoop.types.JavaTypes;
-import randoop.types.Type;
 import randoop.types.TypeTuple;
 
 /** The contract: {@code x0.equals(null)==false}. */
@@ -32,7 +31,7 @@ public final class EqualsToNullRetFalse extends ObjectContract {
   }
 
   @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/93
-  static TypeTuple inputTypes = new TypeTuple(Arrays.<Type>asList(JavaTypes.OBJECT_TYPE));
+  static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
   public TypeTuple getInputTypes() {

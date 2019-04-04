@@ -3,7 +3,6 @@ package randoop.contract;
 import java.util.Arrays;
 import randoop.Globals;
 import randoop.types.JavaTypes;
-import randoop.types.Type;
 import randoop.types.TypeTuple;
 
 /** Checks that calling toString() on an object does not throw an exception. */
@@ -41,7 +40,7 @@ public final class ToStringReturnsNormally extends ObjectContract {
   }
 
   @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/93
-  static TypeTuple inputTypes = new TypeTuple(Arrays.<Type>asList(JavaTypes.OBJECT_TYPE));
+  static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
   public TypeTuple getInputTypes() {

@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.checkerframework.checker.determinism.qual.Det;
 import randoop.Globals;
 import randoop.types.JavaTypes;
-import randoop.types.Type;
 import randoop.types.TypeTuple;
 
 /** The contract: {@code c.toArray().length == c.size()} for all Collections c. */
@@ -36,7 +35,7 @@ public final class SizeToArrayLength extends ObjectContract {
   }
 
   @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/93
-  static TypeTuple inputTypes = new TypeTuple(Arrays.<Type>asList(JavaTypes.COLLECTION_TYPE));
+  static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COLLECTION_TYPE));
 
   @Override
   public TypeTuple getInputTypes() {
