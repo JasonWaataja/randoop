@@ -2,7 +2,6 @@ package randoop.types;
 
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * Represents {@code void}. Technically, {@code void} is used to indicate that a method has no
@@ -34,10 +33,7 @@ public class VoidType extends Type {
 
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return getName();
   }
 
   @Override
@@ -46,12 +42,12 @@ public class VoidType extends Type {
   }
 
   @Override
-  public String getName(@Det VoidType this) {
+  public String getName() {
     return "void";
   }
 
   @Override
-  public String getSimpleName(@Det VoidType this) {
+  public String getSimpleName() {
     return this.getName();
   }
 

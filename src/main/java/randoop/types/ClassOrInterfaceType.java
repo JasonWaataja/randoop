@@ -160,17 +160,17 @@ public abstract class ClassOrInterfaceType extends ReferenceType {
    * @return the name of this class
    */
   @Override
-  public String getSimpleName(@Det ClassOrInterfaceType this) {
+  public String getSimpleName() {
     return getRuntimeClass().getSimpleName();
   }
 
   @Override
-  public String getCanonicalName(@Det ClassOrInterfaceType this) {
+  public String getCanonicalName() {
     return getRuntimeClass().getCanonicalName();
   }
 
   @Override
-  public String getName(@Det ClassOrInterfaceType this) {
+  public String getName() {
     if (this.isMemberClass()) {
       if (this.isStatic()) {
         return enclosingType.getCanonicalName() + "." + this.getSimpleName();
@@ -181,7 +181,7 @@ public abstract class ClassOrInterfaceType extends ReferenceType {
   }
 
   @Override
-  public String getUnqualifiedName(@Det ClassOrInterfaceType this) {
+  public String getUnqualifiedName() {
     String prefix = "";
     if (this.isMemberClass()) {
       prefix = enclosingType.getUnqualifiedName() + ".";
@@ -357,7 +357,7 @@ public abstract class ClassOrInterfaceType extends ReferenceType {
   public abstract boolean isAbstract();
 
   @Override
-  public boolean isGeneric(@Det ClassOrInterfaceType this) {
+  public boolean isGeneric() {
     return this.isMemberClass() && !this.isStatic() && enclosingType.isGeneric();
   }
 

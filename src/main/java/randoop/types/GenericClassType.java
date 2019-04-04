@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * Represents the type of a generic class. Related to concrete {@link InstantiatedType} by
@@ -60,10 +59,7 @@ public class GenericClassType extends ParameterizedType {
 
   @Override
   public String toString(GenericClassType this) {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return getName();
   }
 
   /**
@@ -260,7 +256,7 @@ public class GenericClassType extends ParameterizedType {
   }
 
   @Override
-  public boolean isGeneric(@Det GenericClassType this) {
+  public boolean isGeneric() {
     return true;
   }
 

@@ -73,5 +73,5 @@ public interface SimpleList<T extends @Det Object> {
    *
    * @return {@link java.util.List} for this list
    */
-  public abstract @Det List<T> toJDKList(@Det SimpleList<T> this);
+  public abstract List<T> toJDKList();
 }

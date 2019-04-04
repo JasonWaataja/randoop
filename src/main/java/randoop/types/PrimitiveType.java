@@ -2,7 +2,6 @@ package randoop.types;
 
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * Represents a Java primitive type. Corresponds to primitive types as defined in JLS <a
@@ -53,10 +52,7 @@ public class PrimitiveType extends Type {
    */
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return getName();
   }
 
   /**
@@ -65,12 +61,12 @@ public class PrimitiveType extends Type {
    * <p>For primitive types returns the type name: {@code "int"}, {@code "char"}, etc.
    */
   @Override
-  public String getName(@Det PrimitiveType this) {
+  public String getName() {
     return runtimeClass.getCanonicalName();
   }
 
   @Override
-  public String getSimpleName(@Det PrimitiveType this) {
+  public String getSimpleName() {
     return runtimeClass.getSimpleName();
   }
 

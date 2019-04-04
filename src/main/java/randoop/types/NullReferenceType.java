@@ -2,7 +2,6 @@ package randoop.types;
 
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * The {@code null} type is the type of the value {@code null}. As the subtype of all reference
@@ -35,10 +34,7 @@ class NullReferenceType extends ReferenceType {
 
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return getName();
   }
 
   /**
@@ -59,17 +55,17 @@ class NullReferenceType extends ReferenceType {
   }
 
   @Override
-  public String getName(@Det NullReferenceType this) {
+  public String getName() {
     return "NullType";
   }
 
   @Override
-  public String getSimpleName(@Det NullReferenceType this) {
+  public String getSimpleName() {
     return this.getName();
   }
 
   @Override
-  public String getCanonicalName(@Det NullReferenceType this) {
+  public String getCanonicalName() {
     return this.getName();
   }
 

@@ -88,23 +88,21 @@ class WildcardType extends ParameterType {
       String result = "? extends " + this.getUpperTypeBound().toString();
       return result;
     }
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String result = "? super " + this.getLowerTypeBound().toString();
-    return result;
+
+    return "? super " + this.getLowerTypeBound().toString();
   }
 
   @Override
-  public String getName(@Det WildcardType this) {
+  public String getName() {
     return toString();
   }
 
   @Override
-  public String getSimpleName(@Det WildcardType this) {
+  public String getSimpleName() {
     return toString();
   }
 
-  ParameterBound getTypeBound(@Det WildcardType this) {
+  ParameterBound getTypeBound() {
     if (hasUpperBound) {
       return getUpperTypeBound();
     }
@@ -169,7 +167,7 @@ class WildcardType extends ParameterType {
   }
 
   @Override
-  public boolean isGeneric(@Det WildcardType this) {
+  public boolean isGeneric() {
     return getTypeBound().isGeneric();
   }
 

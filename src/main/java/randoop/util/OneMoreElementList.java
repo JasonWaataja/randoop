@@ -55,7 +55,7 @@ public final class OneMoreElementList<T extends @Det Object>
   }
 
   @Override
-  public @Det List<T> toJDKList(@Det OneMoreElementList<T> this) {
+  public List<T> toJDKList() {
     List<T> result = new ArrayList<>();
     result.addAll(list.toJDKList());
     result.add(lastElement);
@@ -64,9 +64,6 @@ public final class OneMoreElementList<T extends @Det Object>
 
   @Override
   public @NonDet String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String result = toJDKList().toString();
-    return result;
+    return toJDKList().toString();
   }
 }

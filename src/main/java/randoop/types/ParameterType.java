@@ -50,11 +50,11 @@ public abstract class ParameterType extends ReferenceType {
   }
 
   @Override
-  public String getCanonicalName(@Det ParameterType this) {
+  public String getCanonicalName() {
     return this.getName();
   }
 
-  public ParameterBound getLowerTypeBound(@Det ParameterType this) {
+  public ParameterBound getLowerTypeBound() {
     return lowerBound;
   }
 

@@ -119,7 +119,7 @@ public abstract class ReflectionCode {
    *
    * @return the status of the command
    */
-  protected String status(@Det ReflectionCode this) {
+  protected String status() {
     if (!hasStarted() && !hasRun()) {
       return " not run yet";
     } else if (hasStarted() && !hasRun()) {

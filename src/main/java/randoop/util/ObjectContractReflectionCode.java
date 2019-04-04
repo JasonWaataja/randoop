@@ -27,9 +27,6 @@ public final class ObjectContractReflectionCode extends ReflectionCode {
 
   @Override
   public @NonDet String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String status = status();
-    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status;
+    return "Check of ObjectContract " + c + " args: " + Arrays.toString(objs) + status();
   }
 }

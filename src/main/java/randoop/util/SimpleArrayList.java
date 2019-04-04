@@ -30,7 +30,7 @@ public class SimpleArrayList<E extends @Det Object> extends ArrayList<E>
   }
 
   @Override
-  public @Det List<E> toJDKList(@Det SimpleArrayList<E> this) {
+  public List<E> toJDKList() {
     return new ArrayList<>(this);
   }
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * {@code NonParameterizedType} represents a non-parameterized class, interface, enum, or the
@@ -54,10 +53,7 @@ public class NonParameterizedType extends ClassOrInterfaceType {
    */
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return this.getName();
   }
 
   @Override

@@ -49,12 +49,12 @@ class ExplicitTypeVariable extends TypeVariable {
   }
 
   @Override
-  public String getName(@Det ExplicitTypeVariable this) {
+  public String getName() {
     return variable.getName();
   }
 
   @Override
-  public String getSimpleName(@Det ExplicitTypeVariable this) {
+  public String getSimpleName() {
     return this.getName();
   }
 
@@ -63,7 +63,7 @@ class ExplicitTypeVariable extends TypeVariable {
   }
 
   @Override
-  public boolean isGeneric(@Det ExplicitTypeVariable this) {
+  public boolean isGeneric() {
     return true;
   }
 

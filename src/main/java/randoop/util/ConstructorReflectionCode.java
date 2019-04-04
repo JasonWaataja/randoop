@@ -51,9 +51,6 @@ public final class ConstructorReflectionCode extends ReflectionCode {
 
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String status = status();
-    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status;
+    return "Call to " + constructor + ", args: " + Arrays.toString(inputs) + status();
   }
 }

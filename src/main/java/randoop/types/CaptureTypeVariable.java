@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * Represents a type variable introduced by capture conversion over a wildcard type argument.
@@ -83,10 +82,7 @@ class CaptureTypeVariable extends TypeVariable {
 
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = getName() + " of " + wildcard;
-    return name;
+    return getName() + " of " + wildcard;
   }
 
   /**
@@ -133,12 +129,12 @@ class CaptureTypeVariable extends TypeVariable {
   }
 
   @Override
-  public String getName(@Det CaptureTypeVariable this) {
+  public String getName() {
     return "Capture" + varID;
   }
 
   @Override
-  public String getSimpleName(@Det CaptureTypeVariable this) {
+  public String getSimpleName() {
     return this.getName();
   }
 
@@ -148,7 +144,7 @@ class CaptureTypeVariable extends TypeVariable {
   }
 
   @Override
-  public boolean isGeneric(@Det CaptureTypeVariable this) {
+  public boolean isGeneric() {
     return true;
   }
 

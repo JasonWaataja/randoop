@@ -146,12 +146,12 @@ public class ArrayType extends ReferenceType {
   }
 
   @Override
-  public String getName(@Det ArrayType this) {
+  public String getName() {
     return componentType.getName() + "[]";
   }
 
   @Override
-  public String getSimpleName(@Det ArrayType this) {
+  public String getSimpleName() {
     return componentType.getSimpleName() + "[]";
   }
 
@@ -198,7 +198,7 @@ public class ArrayType extends ReferenceType {
   }
 
   @Override
-  public boolean isGeneric(@Det ArrayType this) {
+  public boolean isGeneric() {
     return componentType.isGeneric();
   }
 

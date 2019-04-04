@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Set;
 import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.determinism.qual.NonDet;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * Represents a parameterized type as a generic class instantiated with type arguments.
@@ -62,10 +61,7 @@ public class InstantiatedType extends ParameterizedType {
 
   @Override
   public String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    @PolyDet String name = this.getName();
-    return name;
+    return getName();
   }
 
   @Override
@@ -284,7 +280,7 @@ public class InstantiatedType extends ParameterizedType {
   }
 
   @Override
-  public boolean isGeneric(@Det InstantiatedType this) {
+  public boolean isGeneric() {
     if (super.isGeneric()) { // enclosing type is generic
       return true;
     }

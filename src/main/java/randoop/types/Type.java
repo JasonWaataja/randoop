@@ -210,7 +210,7 @@ public abstract class Type implements Comparable<Type> {
    *
    * @return the fully-qualified type name for this type
    */
-  public abstract String getName(@Det Type this);
+  public abstract String getName();
 
   /**
    * Returns the name of this type without type arguments or package qualifiers. For {@code
@@ -218,7 +218,7 @@ public abstract class Type implements Comparable<Type> {
    *
    * @return the name of this type without type arguments
    */
-  public abstract String getSimpleName(@Det Type this);
+  public abstract String getSimpleName();
 
   /**
    * Returns the name of this type as the "canonical name" of the underlying runtime class.
@@ -229,7 +229,7 @@ public abstract class Type implements Comparable<Type> {
    *
    * @return the fully-qualified canonical name of this type
    */
-  public String getCanonicalName(@Det Type this) {
+  public String getCanonicalName() {
     return getRuntimeClass().getCanonicalName();
   }
 
@@ -240,7 +240,7 @@ public abstract class Type implements Comparable<Type> {
    *
    * @return the unqualified name of this type
    */
-  public String getUnqualifiedName(@Det Type this) {
+  public String getUnqualifiedName() {
     return this.getSimpleName();
   }
 
@@ -309,7 +309,7 @@ public abstract class Type implements Comparable<Type> {
    *
    * @return true if this type is generic, false otherwise
    */
-  public boolean isGeneric(@Det Type this) {
+  public boolean isGeneric() {
     return false;
   }
 
@@ -529,18 +529,10 @@ public abstract class Type implements Comparable<Type> {
    */
   @Override
   public int compareTo(Type type) {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
     String name1 = this.getCanonicalName();
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String name2 = this.getCanonicalName();
+    String name2 = type.getCanonicalName();
     if (name1 != null && name2 != null) {
-      @SuppressWarnings(
-          "determinism") // constructors guarantee all instances of this class are @Det:
-      // it's safe to call this method that requires a @Det receiver
-      @PolyDet int result = this.getCanonicalName().compareTo(type.getCanonicalName());
-      return result;
+      return this.getCanonicalName().compareTo(type.getCanonicalName());
     }
     return this.getRuntimeClass().getName().compareTo(this.getRuntimeClass().getName());
   }

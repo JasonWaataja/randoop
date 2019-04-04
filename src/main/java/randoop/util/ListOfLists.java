@@ -103,7 +103,7 @@ public class ListOfLists<T extends @Det Object> implements SimpleList<T>, Serial
   }
 
   @Override
-  public @Det List<T> toJDKList(@Det ListOfLists<T> this) {
+  public List<T> toJDKList() {
     List<T> result = new ArrayList<>();
     for (SimpleList<T> l : lists) {
       result.addAll(l.toJDKList());
@@ -113,9 +113,6 @@ public class ListOfLists<T extends @Det Object> implements SimpleList<T>, Serial
 
   @Override
   public @NonDet String toString() {
-    @SuppressWarnings("determinism") // constructors guarantee all instances of this class are @Det:
-    // it's safe to call this method that requires a @Det receiver
-    String result = toJDKList().toString();
-    return result;
+    return toJDKList().toString();
   }
 }
