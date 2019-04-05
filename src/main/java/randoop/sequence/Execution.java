@@ -5,7 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import org.checkerframework.checker.determinism.qual.Det;
-import org.checkerframework.checker.determinism.qual.PolyDet;
 import randoop.ExecutionOutcome;
 import randoop.NotExecuted;
 
@@ -51,10 +50,8 @@ public final class Execution {
    * @param i the statement position
    * @return the outcome of the ith statement
    */
-  public ExecutionOutcome get(int i) {
-    @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
-    @PolyDet ExecutionOutcome result = outcomes.get(i);
-    return result;
+  public ExecutionOutcome get(@Det int i) {
+    return outcomes.get(i);
   }
 
   void addCoveredClass(@Det Class<?> c) {
