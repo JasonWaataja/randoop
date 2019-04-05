@@ -289,9 +289,13 @@ public abstract class Type implements Comparable<Type> {
    * @return true if this type is the Class type, and false otherwise
    */
   public boolean isClass() {
-    @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
-    @PolyDet boolean result = this.equals(JavaTypes.CLASS_TYPE);
-    return result;
+    return this.equals(JavaTypes.CLASS_TYPE);
+  }
+
+  @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
   }
 
   /**
@@ -328,9 +332,7 @@ public abstract class Type implements Comparable<Type> {
    * @return true if this is the {@code Object} type, false otherwise
    */
   public boolean isObject() {
-    @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
-    @PolyDet boolean result = this.equals(JavaTypes.OBJECT_TYPE);
-    return result;
+    return this.equals(JavaTypes.OBJECT_TYPE);
   }
 
   /**
@@ -339,9 +341,7 @@ public abstract class Type implements Comparable<Type> {
    * @return true if this type is the String type, and false otherwise
    */
   public boolean isString() {
-    @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
-    @PolyDet boolean result = this.equals(JavaTypes.STRING_TYPE);
-    return result;
+    return this.equals(JavaTypes.STRING_TYPE);
   }
 
   /**
@@ -350,9 +350,7 @@ public abstract class Type implements Comparable<Type> {
    * @return true if this type is void, false otherwise
    */
   public boolean isVoid() {
-    @SuppressWarnings("determinism") // https://github.com/t-rasmud/checker-framework/issues/96
-    @PolyDet boolean result = this.equals(JavaTypes.VOID_TYPE);
-    return result;
+    return this.equals(JavaTypes.VOID_TYPE);
   }
 
   /**
