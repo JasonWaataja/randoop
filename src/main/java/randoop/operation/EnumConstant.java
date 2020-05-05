@@ -8,6 +8,9 @@ import randoop.types.ClassOrInterfaceType;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * EnumConstant is an {@link Operation} representing a constant value from an enum.
  *
@@ -36,6 +39,7 @@ public class EnumConstant extends CallableOperation {
     if (!(obj instanceof EnumConstant)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     EnumConstant e = (EnumConstant) obj;
     return equalsEnumConstant(e);
   }
@@ -71,6 +75,7 @@ public class EnumConstant extends CallableOperation {
    * @return a {@link NormalExecution} object holding the value of the enum constant
    */
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public ExecutionOutcome execute(Object[] statementInput) {
     assert statementInput.length == 0;
     return new NormalExecution(this.value, 0);
@@ -83,11 +88,11 @@ public class EnumConstant extends CallableOperation {
    */
   @Override
   public void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b) {
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b) {
     b.append(declaringType.getName()).append(".").append(this.value.name());
   }
 
@@ -116,18 +121,18 @@ public class EnumConstant extends CallableOperation {
    * @throws OperationParseException if desc does not match expected form
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedClassOperation parse(String desc) throws OperationParseException {
+  public static TypedClassOperation parse(@Det String desc) throws OperationParseException {
     if (desc == null) {
       throw new IllegalArgumentException("desc cannot be null");
     }
     int colonIdx = desc.indexOf(':');
     if (colonIdx < 0) {
       String msg =
-          "An enum constant description must be of the form \""
-              + "<type>:<value>"
-              + " but description is \""
-              + desc
-              + "\".";
+              "An enum constant description must be of the form \""
+                      + "<type>:<value>"
+                      + " but description is \""
+                      + desc
+                      + "\".";
       throw new OperationParseException(msg);
     }
 
@@ -135,9 +140,9 @@ public class EnumConstant extends CallableOperation {
     String valueName = desc.substring(colonIdx + 1).trim();
 
     String errorPrefix =
-        "Error when parsing type-value pair "
-            + desc
-            + " for an enum description of the form <type>:<value>.";
+            "Error when parsing type-value pair "
+                    + desc
+                    + " for an enum description of the form <type>:<value>.";
 
     if (typeName.isEmpty()) {
       String msg = errorPrefix + " No type given.";
@@ -174,20 +179,20 @@ public class EnumConstant extends CallableOperation {
     Enum<?> value = valueOf(declaringType.getRuntimeClass(), valueName);
     if (value == null) {
       String msg =
-          errorPrefix
-              + " The value given \""
-              + valueName
-              + "\" is not a constant of the enum "
-              + typeName
-              + ".";
+              errorPrefix
+                      + " The value given \""
+                      + valueName
+                      + "\" is not a constant of the enum "
+                      + typeName
+                      + ".";
       throw new OperationParseException(msg);
     }
 
     return new TypedClassOperation(
-        new EnumConstant(value),
-        (ClassOrInterfaceType) declaringType,
-        new TypeTuple(),
-        declaringType);
+            new EnumConstant(value),
+            (ClassOrInterfaceType) declaringType,
+            new TypeTuple(),
+            declaringType);
   }
 
   /**
@@ -217,7 +222,7 @@ public class EnumConstant extends CallableOperation {
    * @param valueName name for value that may be a constant of the enum
    * @return reference to actual constant value, or null if none exists in type
    */
-  private static Enum<?> valueOf(Class<?> type, String valueName) {
+  private static @PolyDet("up") Enum<?> valueOf(Class<?> type, String valueName) {
     for (Object obj : type.getEnumConstants()) {
       Enum<?> e = (Enum<?>) obj;
       if (e.name().equals(valueName)) {
