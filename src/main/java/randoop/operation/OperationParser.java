@@ -2,6 +2,8 @@ package randoop.operation;
 
 import java.util.List;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * Parser for text serialization (string representation) of {@link Operation}s. See {@link #parse}
  * for format details.
@@ -41,7 +43,7 @@ public class OperationParser {
    * @return the operation for the given string descriptor
    * @throws OperationParseException if the string does not have expected format
    */
-  public static TypedOperation parse(String str) throws OperationParseException {
+  public static TypedOperation parse(@Det String str) throws OperationParseException {
     if (str == null || str.length() == 0) {
       throw new IllegalArgumentException("invalid string: " + str);
     }
