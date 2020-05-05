@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
 import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
 import randoop.main.RandoopBug;
 import randoop.reflection.ReflectionPredicate;
 import randoop.sequence.SequenceExecutionException;
@@ -55,7 +56,7 @@ public class AccessibleField {
    * @param inputVars list of input variables
    * @return string representing code representation of field
    */
-  public String toCode(Type declaringType, List<Variable> inputVars) {
+  public String toCode(Type declaringType, @PolyDet List<@PolyDet Variable> inputVars) {
     StringBuilder sb = new StringBuilder();
     if (isStatic) {
       sb.append(declaringType.getCanonicalName());

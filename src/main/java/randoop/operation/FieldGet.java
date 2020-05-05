@@ -15,6 +15,9 @@ import randoop.types.ClassOrInterfaceType;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * FieldGetter is an adapter that creates a {@link Operation} from a {@link AccessibleField} and
  * behaves like a getter for the field.
@@ -30,7 +33,7 @@ public class FieldGet extends CallableOperation {
    *
    * @param field the {@link AccessibleField} object from which to get values
    */
-  public FieldGet(AccessibleField field) {
+  public FieldGet(@PolyDet AccessibleField field) {
     this.field = field;
   }
 
@@ -46,6 +49,7 @@ public class FieldGet extends CallableOperation {
    * @throws SequenceExecutionException if field access has a type exception
    */
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public ExecutionOutcome execute(Object[] statementInput) {
 
     // either 0 or 1 inputs. If none use null, otherwise give object.
@@ -53,13 +57,14 @@ public class FieldGet extends CallableOperation {
 
     try {
 
+      @SuppressWarnings("determinism:method.invocation.invalid")
       Object value = field.getValue(input);
       return new NormalExecution(value, 0);
 
     } catch (RandoopBug | SequenceExecutionException e) {
       throw e;
     } catch (Throwable thrown) {
-      return new ExceptionalExecution(thrown, 0);
+      return new @PolyDet ExceptionalExecution(thrown, 0);
     }
   }
 
@@ -71,11 +76,11 @@ public class FieldGet extends CallableOperation {
    */
   @Override
   public void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b) {
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b) {
     b.append(field.toCode(declaringType, inputVars));
   }
 
@@ -103,6 +108,7 @@ public class FieldGet extends CallableOperation {
     if (!(obj instanceof FieldGet)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     FieldGet s = (FieldGet) obj;
     return field.equals(s.field);
   }
@@ -122,7 +128,7 @@ public class FieldGet extends CallableOperation {
    * @throws OperationParseException if any error in descriptor string
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedOperation parse(String descr) throws OperationParseException {
+  public static TypedOperation parse(@Det String descr) throws OperationParseException {
     String errorPrefix = "Error parsing " + descr + " as description for field getter statement: ";
 
     int openParPos = descr.indexOf('(');
@@ -146,8 +152,8 @@ public class FieldGet extends CallableOperation {
     }
     String fieldname = descr.substring(openParPos + 1, closeParPos);
 
-    AccessibleField accessibleField = FieldParser.parse(descr, classname, fieldname);
-    ClassOrInterfaceType classType = accessibleField.getDeclaringType();
+    @Det AccessibleField accessibleField = FieldParser.parse(descr, classname, fieldname);
+    @Det ClassOrInterfaceType classType = accessibleField.getDeclaringType();
     Type fieldType = Type.forType(accessibleField.getRawField().getGenericType());
 
     List<Type> getInputTypeList = new ArrayList<>();
@@ -155,7 +161,7 @@ public class FieldGet extends CallableOperation {
       getInputTypeList.add(classType);
     }
     return new TypedClassOperation(
-        new FieldGet(accessibleField), classType, new TypeTuple(getInputTypeList), fieldType);
+            new FieldGet(accessibleField), classType, new TypeTuple(getInputTypeList), fieldType);
   }
 
   @Override
