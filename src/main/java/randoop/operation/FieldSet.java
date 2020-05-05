@@ -16,6 +16,10 @@ import randoop.types.JavaTypes;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * FieldSetter is an adapter for a {@link AccessibleField} as a {@link Operation} that acts like a
  * setter for the field.
@@ -33,7 +37,7 @@ public class FieldSet extends CallableOperation {
    * @param field the field object to be set by setter statements
    * @throws IllegalArgumentException if field is static final
    */
-  public FieldSet(AccessibleField field) {
+  public FieldSet(@PolyDet AccessibleField field) {
     if (field.isFinal()) {
       throw new IllegalArgumentException("Field may not be final for FieldSet");
     }
@@ -54,6 +58,7 @@ public class FieldSet extends CallableOperation {
    * @throws SequenceExecutionException if field access has type exception
    */
   @Override
+  @SuppressWarnings({"determinism:override.return.invalid", "determinism:method.invocation.invalid"})
   public ExecutionOutcome execute(Object[] statementInput) {
 
     Object instance = null;
@@ -68,10 +73,10 @@ public class FieldSet extends CallableOperation {
     } catch (RandoopBug | SequenceExecutionException e) {
       throw e;
     } catch (Throwable thrown) {
-      return new ExceptionalExecution(thrown, 0);
+      return new @PolyDet ExceptionalExecution(thrown, 0);
     }
 
-    return new NormalExecution(null, 0);
+    return new @PolyDet NormalExecution(null, 0);
   }
 
   /**
@@ -93,17 +98,18 @@ public class FieldSet extends CallableOperation {
    */
   @Override
   public void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b) {
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b) {
 
     b.append(field.toCode(declaringType, inputVars));
     b.append(" = ");
 
     // variable/value to be assigned is either only or second entry in list
     int index = inputVars.size() - 1;
+    @SuppressWarnings("determinism:method.invocation.invalid")
     String rhs = getArgumentString(inputVars.get(index));
     b.append(rhs);
   }
@@ -127,7 +133,7 @@ public class FieldSet extends CallableOperation {
    * @throws OperationParseException if descr does not have expected form
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedOperation parse(String descr) throws OperationParseException {
+  public static TypedOperation parse(@Det String descr) throws OperationParseException {
     String errorPrefix = "Error parsing " + descr + " as description for field set statement: ";
 
     int openParPos = descr.indexOf('(');
@@ -148,24 +154,24 @@ public class FieldSet extends CallableOperation {
 
     String fieldname = descr.substring(openParPos + 1, closeParPos);
 
-    AccessibleField accessibleField = FieldParser.parse(descr, classname, fieldname);
-    ClassOrInterfaceType classType = accessibleField.getDeclaringType();
+    @Det AccessibleField accessibleField = FieldParser.parse(descr, classname, fieldname);
+    @Det ClassOrInterfaceType classType = accessibleField.getDeclaringType();
     Type fieldType = Type.forType(accessibleField.getRawField().getGenericType());
 
     if (accessibleField.isFinal()) {
       throw new OperationParseException(
-          "Cannot create setter for final field " + classname + "." + opname);
+              "Cannot create setter for final field " + classname + "." + opname);
     }
-    List<Type> setInputTypeList = new ArrayList<>();
+    List<Type> setInputTypeList = new ArrayList<Type>();
     if (!accessibleField.isStatic()) {
       setInputTypeList.add(classType);
     }
     setInputTypeList.add(fieldType);
-    return new TypedClassOperation(
-        new FieldSet(accessibleField),
-        classType,
-        new TypeTuple(setInputTypeList),
-        JavaTypes.VOID_TYPE);
+    return new @Det TypedClassOperation(
+            new FieldSet(accessibleField),
+            classType,
+            new TypeTuple(setInputTypeList),
+            JavaTypes.VOID_TYPE);
   }
 
   @Override
@@ -186,6 +192,7 @@ public class FieldSet extends CallableOperation {
     if (!(obj instanceof FieldSet)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     FieldSet s = (FieldSet) obj;
     return field.equals(s.field);
   }
