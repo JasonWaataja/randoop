@@ -35,6 +35,7 @@ class UncheckedCast extends CallableOperation {
    * @return the value cast to the type of this cast
    */
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public ExecutionOutcome execute(Object[] input) {
     assert input.length == 1 : "cast only takes one input";
     return new NormalExecution(type.getRuntimeClass().cast(input[0]), 0);
@@ -61,6 +62,7 @@ class UncheckedCast extends CallableOperation {
       StringBuilder b) {
     b.append("(").append(type.getName()).append(")");
     int i = 0;
+    @SuppressWarnings("determinism:method.invocation.invalid")
     String param = getArgumentString(inputVars.get(i));
     b.append(param);
   }
