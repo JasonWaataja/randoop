@@ -1,6 +1,7 @@
 package randoop.field;
 
 import java.lang.reflect.Field;
+import org.checkerframework.checker.determinism.qual.Det;
 import org.checkerframework.checker.signature.qual.ClassGetName;
 import randoop.operation.OperationParseException;
 import randoop.types.ClassOrInterfaceType;
@@ -28,10 +29,10 @@ public class FieldParser {
    * @throws OperationParseException if either name is malformed or incorrect
    */
   public static AccessibleField parse(
-      String descr, @ClassGetName String classname, String fieldname)
-      throws OperationParseException {
+          String descr, @Det @ClassGetName String classname, String fieldname)
+          throws OperationParseException {
     String errorPrefix = "Error when parsing field " + descr + ".";
-    ClassOrInterfaceType classType;
+    @Det ClassOrInterfaceType classType;
     try {
       classType = (ClassOrInterfaceType) Type.forName(classname);
     } catch (ClassNotFoundException e) {
@@ -42,20 +43,20 @@ public class FieldParser {
     String whitespacePattern = ".*\\s+.*";
     if (fieldname.matches(whitespacePattern)) {
       String msg =
-          errorPrefix + " The field name " + fieldname + " has unexpected whitespace characters.";
+              errorPrefix + " The field name " + fieldname + " has unexpected whitespace characters.";
       throw new OperationParseException(msg);
     }
 
     Field field = fieldForName(classType.getRuntimeClass(), fieldname);
     if (field == null) {
       String msg =
-          errorPrefix
-              + " The field name \""
-              + fieldname
-              + "\" is not a field of the class "
-              + "\""
-              + classname
-              + "\".";
+              errorPrefix
+                      + " The field name \""
+                      + fieldname
+                      + "\" is not a field of the class "
+                      + "\""
+                      + classname
+                      + "\".";
       throw new OperationParseException(msg);
     }
 
@@ -69,6 +70,7 @@ public class FieldParser {
    * @param fieldName field name for which to search the class
    * @return field of the class with the given name
    */
+  @SuppressWarnings("determinism:return.type.incompatible")
   private static Field fieldForName(Class<?> type, String fieldName) {
     for (Field f : type.getDeclaredFields()) {
       if (fieldName.equals(f.getName())) {

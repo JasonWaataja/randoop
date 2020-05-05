@@ -3,6 +3,7 @@ package randoop.field;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.List;
+import org.checkerframework.checker.determinism.qual.Det;
 import randoop.main.RandoopBug;
 import randoop.reflection.ReflectionPredicate;
 import randoop.sequence.SequenceExecutionException;
@@ -19,7 +20,7 @@ import randoop.types.Type;
 public class AccessibleField {
 
   private Field field;
-  private final ClassOrInterfaceType declaringType;
+  private final @Det ClassOrInterfaceType declaringType;
   private boolean isFinal;
   private boolean isStatic;
 
@@ -29,7 +30,7 @@ public class AccessibleField {
    * @param field the field
    * @param declaringType the type for the declaring class of this field
    */
-  public AccessibleField(Field field, ClassOrInterfaceType declaringType) {
+  public AccessibleField(Field field, @Det ClassOrInterfaceType declaringType) {
     this.field = field;
     this.field.setAccessible(true);
     int mods = field.getModifiers() & Modifier.fieldModifiers();
@@ -89,6 +90,7 @@ public class AccessibleField {
     if (!(obj instanceof AccessibleField)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     AccessibleField f = (AccessibleField) obj;
     return this.field.equals(f.field);
   }
