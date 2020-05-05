@@ -26,7 +26,7 @@ class ArrayElementSet extends CallableOperation {
 
   @Override
   @SuppressWarnings("determinism:override.return.invalid")
-  public @PolyDet("down") ExecutionOutcome execute(Object[] input) {
+  public ExecutionOutcome execute(Object[] input) {
     assert input.length == 3
             : "array element assignment must have array, index and value as arguments";
     Object array = input[ARRAY];
@@ -35,10 +35,10 @@ class ArrayElementSet extends CallableOperation {
 
     try {
       Array.set(array, index, value);
-    } catch (@PolyDet("down") Throwable thrown) {
-      return new ExceptionalExecution(thrown, 0);
+    } catch (Throwable thrown) {
+      return new @PolyDet ExceptionalExecution(thrown, 0);
     }
-    return new @PolyDet("down") NormalExecution(null, 0);
+    return new @PolyDet NormalExecution(null, 0);
   }
 
   @Override

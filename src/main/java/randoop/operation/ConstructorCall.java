@@ -15,6 +15,9 @@ import randoop.util.ConstructorReflectionCode;
 import randoop.util.ReflectionExecutor;
 import randoop.util.Util;
 
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * ConstructorCall is an {@link Operation} that represents a call to a constructor, and holds a
  * reference to a reflective {@link java.lang.reflect.Constructor} object.
@@ -91,7 +94,8 @@ public final class ConstructorCall extends CallableOperation {
       StringBuilder b) {
     assert declaringType instanceof ClassOrInterfaceType : "constructor must be member of class";
 
-    ClassOrInterfaceType declaringClassType = (ClassOrInterfaceType) declaringType;
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
+    @PolyDet ClassOrInterfaceType declaringClassType = (ClassOrInterfaceType) declaringType;
 
     boolean isMemberClass = declaringClassType.isMemberClass();
     assert Util.implies(isMemberClass, !inputVars.isEmpty());
@@ -116,6 +120,7 @@ public final class ConstructorCall extends CallableOperation {
         b.append("(").append(inputTypes.get(i).getName()).append(")");
       }
 
+      @SuppressWarnings("determinism:method.invocation.invalid")
       String param = getArgumentString(inputVars.get(i));
       b.append(param);
     }
@@ -136,6 +141,7 @@ public final class ConstructorCall extends CallableOperation {
     if (!(o instanceof ConstructorCall)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     ConstructorCall other = (ConstructorCall) o;
     return this.constructor.equals(other.constructor);
   }
@@ -160,6 +166,7 @@ public final class ConstructorCall extends CallableOperation {
    * @see TypedOperation#execute(Object[])
    */
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public ExecutionOutcome execute(Object[] statementInput) {
 
     // if this is a constructor from a non-static inner class, then first argument must
@@ -174,7 +181,7 @@ public final class ConstructorCall extends CallableOperation {
         return new ExceptionalExecution(new NullPointerException(message), 0);
       }
     }
-    ConstructorReflectionCode code =
+    @PolyDet ConstructorReflectionCode code =
         new ConstructorReflectionCode(this.constructor, statementInput);
 
     return ReflectionExecutor.executeReflectionCode(code);
@@ -199,7 +206,7 @@ public final class ConstructorCall extends CallableOperation {
   public String toParsableString(Type declaringType, TypeTuple inputTypes, Type outputType) {
     StringBuilder sb = new StringBuilder();
     sb.append(constructor.getName()).append(".<init>(");
-    Class<?>[] params = constructor.getParameterTypes();
+    @PolyDet Class<?> @PolyDet[] params = constructor.getParameterTypes();
     TypeArguments.getTypeArgumentString(sb, params);
     sb.append(")");
     return sb.toString();
@@ -216,7 +223,7 @@ public final class ConstructorCall extends CallableOperation {
    * @see OperationParser#parse(String)
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedClassOperation parse(String signature) throws OperationParseException {
+  public static TypedClassOperation parse(@Det String signature) throws OperationParseException {
     if (signature == null) {
       throw new IllegalArgumentException("signature may not be null");
     }
@@ -242,7 +249,7 @@ public final class ConstructorCall extends CallableOperation {
       throw new OperationParseException(msg);
     }
 
-    Class<?>[] typeArguments;
+    @Det Class<?> @Det [] typeArguments;
     try {
       typeArguments = TypeArguments.getTypeArgumentsForString(arguments);
     } catch (OperationParseException e) {
