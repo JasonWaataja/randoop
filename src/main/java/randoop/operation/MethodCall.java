@@ -17,6 +17,10 @@ import randoop.util.Log;
 import randoop.util.MethodReflectionCode;
 import randoop.util.ReflectionExecutor;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * MethodCall is a {@link Operation} that represents a call to a method. It is a wrapper for a
  * reflective Method object, and caches values of computed reflective calls.
@@ -120,6 +124,7 @@ public final class MethodCall extends CallableOperation {
         sb.append("(").append(inputTypes.get(i).getName()).append(")");
       }
 
+      @SuppressWarnings("determinism:method.invocation.invalid")
       String param = getArgumentString(inputVars.get(i));
       sb.append(param);
     }
@@ -134,12 +139,13 @@ public final class MethodCall extends CallableOperation {
     if (!(o instanceof MethodCall)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     MethodCall other = (MethodCall) o;
     return this.method.equals(other.method);
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(method);
   }
 
@@ -150,7 +156,8 @@ public final class MethodCall extends CallableOperation {
    *     ExceptionalExecution} if an exception thrown.
    */
   @Override
-  public ExecutionOutcome execute(Object[] input) {
+  @SuppressWarnings("determinism:override.return.invalid")
+  public @PolyDet("up") ExecutionOutcome execute(Object[] input) {
 
     Log.logPrintf("MethodCall.execute: this = %s%n", this);
 
@@ -163,7 +170,7 @@ public final class MethodCall extends CallableOperation {
       paramsStartIndex = 1;
     }
 
-    Object[] params = new Object[paramsLength];
+    @PolyDet("up") Object @PolyDet("up")[] params = new @PolyDet("up") Object @PolyDet("up")[paramsLength];
     for (int i = 0; i < params.length; i++) {
       params[i] = input[i + paramsStartIndex];
       if (Log.isLoggingOn()) {
@@ -175,7 +182,7 @@ public final class MethodCall extends CallableOperation {
       }
     }
 
-    MethodReflectionCode code = new MethodReflectionCode(this.method, receiver, params);
+    @PolyDet("up") MethodReflectionCode code = new MethodReflectionCode(this.method, receiver, params);
 
     return ReflectionExecutor.executeReflectionCode(code);
   }
@@ -202,7 +209,7 @@ public final class MethodCall extends CallableOperation {
     StringBuilder sb = new StringBuilder();
     sb.append(method.getDeclaringClass().getName()).append(".");
     sb.append(method.getName()).append("(");
-    Class<?>[] params = method.getParameterTypes();
+    @PolyDet Class<?> @PolyDet[] params = method.getParameterTypes();
     TypeArguments.getTypeArgumentString(sb, params);
     sb.append(")");
     return sb.toString();
@@ -219,7 +226,7 @@ public final class MethodCall extends CallableOperation {
    * @see OperationParser#parse(String)
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedClassOperation parse(String signature) throws OperationParseException {
+  public static TypedClassOperation parse(@Det String signature) throws OperationParseException {
     if (signature == null) {
       throw new IllegalArgumentException("signature may not be null");
     }
@@ -244,7 +251,7 @@ public final class MethodCall extends CallableOperation {
       throw new OperationParseException(msg);
     }
 
-    Class<?>[] typeArguments;
+    @Det Class<?> @Det[] typeArguments;
     try {
       typeArguments = TypeArguments.getTypeArgumentsForString(arguments);
     } catch (OperationParseException e) {
