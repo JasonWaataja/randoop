@@ -10,6 +10,9 @@ import randoop.types.ArrayType;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * {@code ArrayCreation} is a {@link Operation} representing the construction of a one-dimensional
  * array of a given type. The operation takes a length argument and creates an array of that size.
@@ -44,13 +47,14 @@ public class ArrayCreation extends CallableOperation {
     if (!(obj instanceof ArrayCreation)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     ArrayCreation arrayCreation = (ArrayCreation) obj;
     return this.elementType.equals(arrayCreation.elementType)
-        && this.dimensions == arrayCreation.dimensions;
+            && this.dimensions == arrayCreation.dimensions;
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(elementType, dimensions);
   }
 
@@ -65,7 +69,7 @@ public class ArrayCreation extends CallableOperation {
 
   @Override
   // The argument array contains a single Integer.
-  public ExecutionOutcome execute(Object[] input) {
+  public @NonDet ExecutionOutcome execute(Object[] input) {
     assert input.length == 1 : "requires array dimension as input";
     int length = ((Integer) input[0]).intValue();
     long startTime = System.currentTimeMillis();
@@ -76,14 +80,15 @@ public class ArrayCreation extends CallableOperation {
 
   @Override
   public void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b) {
-    Variable inputVar = inputVars.get(0);
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b) {
+    @PolyDet("up") Variable inputVar = inputVars.get(0);
     b.append("new").append(" ").append(this.elementType.getName());
     b.append("[ ");
+    @SuppressWarnings("determinism:method.invocation.invalid")
     String param = getArgumentString(inputVar);
     b.append(param).append(" ]");
     for (int i = 1; i < dimensions; i++) {
@@ -94,7 +99,7 @@ public class ArrayCreation extends CallableOperation {
   @Override
   public String toParsableString(Type declaringType, TypeTuple inputTypes, Type outputType) {
     StringBuilder result =
-        new StringBuilder(elementType.getName() + "[ " + inputTypes.get(0) + " ]");
+            new StringBuilder(elementType.getName() + "[ " + inputTypes.get(0) + " ]");
     for (int i = 1; i < dimensions; i++) {
       result.append("[]");
     }

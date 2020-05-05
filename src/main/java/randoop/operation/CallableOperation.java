@@ -8,6 +8,8 @@ import randoop.sequence.Variable;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+
 /**
  * CallableOperation is an abstract implementation of the Operation interface to provide default
  * implementations of Operation predicates that are false except for a few kinds of operations.
@@ -73,7 +75,7 @@ public abstract class CallableOperation implements Operation {
    * @param input array containing appropriate inputs to operation
    * @return results of executing this statement
    */
-  public abstract ExecutionOutcome execute(Object[] input);
+  public abstract @NonDet ExecutionOutcome execute(Object[] input);
 
   /**
    * Produces a Java source code representation of this statement and appends it to the given
@@ -86,11 +88,11 @@ public abstract class CallableOperation implements Operation {
    * @param b the {@link StringBuilder} to which code is added
    */
   public abstract void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b);
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b);
 
   /**
    * Returns the variable as a string to be used as an argument to an operation. Determines if the
@@ -124,7 +126,7 @@ public abstract class CallableOperation implements Operation {
    * @return a string representation of this operation
    */
   public abstract String toParsableString(
-      Type declaringType, TypeTuple inputTypes, Type outputType);
+          Type declaringType, TypeTuple inputTypes, Type outputType);
 
   public AccessibleObject getReflectionObject() {
     return null;

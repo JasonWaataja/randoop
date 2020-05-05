@@ -9,6 +9,8 @@ import randoop.sequence.Variable;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** Created by bjkeller on 8/19/16. */
 class ArrayElementSet extends CallableOperation {
 
@@ -23,33 +25,36 @@ class ArrayElementSet extends CallableOperation {
   }
 
   @Override
-  public ExecutionOutcome execute(Object[] input) {
+  @SuppressWarnings("determinism:override.return.invalid")
+  public @PolyDet("down") ExecutionOutcome execute(Object[] input) {
     assert input.length == 3
-        : "array element assignment must have array, index and value as arguments";
+            : "array element assignment must have array, index and value as arguments";
     Object array = input[ARRAY];
     int index = (int) input[INDEX];
     Object value = input[VALUE];
 
     try {
       Array.set(array, index, value);
-    } catch (Throwable thrown) {
+    } catch (@PolyDet("down") Throwable thrown) {
       return new ExceptionalExecution(thrown, 0);
     }
-    return new NormalExecution(null, 0);
+    return new @PolyDet("down") NormalExecution(null, 0);
   }
 
   @Override
   public void appendCode(
-      Type declaringType,
-      TypeTuple inputTypes,
-      Type outputType,
-      List<Variable> inputVars,
-      StringBuilder b) {
+          Type declaringType,
+          TypeTuple inputTypes,
+          Type outputType,
+          List<Variable> inputVars,
+          StringBuilder b) {
 
     b.append(inputVars.get(ARRAY).getName()).append("[");
-    Variable indexVariable = inputVars.get(INDEX);
+    @PolyDet("up") Variable indexVariable = inputVars.get(INDEX);
+    @SuppressWarnings("determinism:method.invocation.invalid")
     String index = getArgumentString(indexVariable);
     b.append(index).append("]").append(" = ");
+    @SuppressWarnings("determinism:method.invocation.invalid")
     String value = getArgumentString(inputVars.get(VALUE));
     b.append(value);
   }
