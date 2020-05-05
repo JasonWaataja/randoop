@@ -6,6 +6,8 @@ import randoop.types.Substitution;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * Represents operations that have no declaring class, such as literal value, cast, or array
  * creation/access/assignment.
@@ -34,15 +36,15 @@ class TypedTermOperation extends TypedOperation {
   }
 
   @Override
-  public TypedTermOperation substitute(Substitution substitution) {
-    TypeTuple inputTypes = this.getInputTypes().substitute(substitution);
+  public @Det TypedTermOperation substitute(@Det TypedTermOperation this, @Det Substitution substitution) {
+    @Det TypeTuple inputTypes = this.getInputTypes().substitute(substitution);
     Type outputType = this.getOutputType().substitute(substitution);
     return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
   }
 
   @Override
-  public TypedOperation applyCaptureConversion() {
-    TypeTuple inputTypes = this.getInputTypes().applyCaptureConversion();
+  public @Det TypedOperation applyCaptureConversion(@Det TypedTermOperation this) {
+    @Det TypeTuple inputTypes = this.getInputTypes().applyCaptureConversion();
     Type outputType = this.getOutputType().applyCaptureConversion();
     return new TypedTermOperation(this.getOperation(), inputTypes, outputType);
   }

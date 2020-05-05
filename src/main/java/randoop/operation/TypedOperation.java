@@ -24,6 +24,8 @@ import randoop.types.Type;
 import randoop.types.TypeTuple;
 import randoop.types.TypeVariable;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * Type decorator of {@link Operation} objects. An operation has zero or more input types, and one
  * output type that may be {@code void}.
@@ -283,7 +285,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
    * @param substitution the substitution
    * @return the operation resulting from applying the substitution to the types of this operation
    */
-  public abstract TypedOperation substitute(Substitution substitution);
+  public abstract @Det TypedOperation substitute(@Det TypedOperation this, @Det Substitution substitution);
 
   /**
    * Applies a capture conversion to the wildcard types of this operation, and returns a new
@@ -292,7 +294,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
    * @return the operation result from applying a capture conversion to wildcard types of this
    *     operation
    */
-  public abstract TypedOperation applyCaptureConversion();
+  public abstract @Det TypedOperation applyCaptureConversion(@Det TypedOperation this);
 
   // Implementation note: clients mutate the list, so don't use Collections.emptyList.
   public List<TypeVariable> getTypeParameters() {

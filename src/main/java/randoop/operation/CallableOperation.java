@@ -9,6 +9,7 @@ import randoop.types.Type;
 import randoop.types.TypeTuple;
 
 import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * CallableOperation is an abstract implementation of the Operation interface to provide default
@@ -91,7 +92,7 @@ public abstract class CallableOperation implements Operation {
           Type declaringType,
           TypeTuple inputTypes,
           Type outputType,
-          List<Variable> inputVars,
+          @PolyDet List<@PolyDet Variable> inputVars,
           StringBuilder b);
 
   /**
