@@ -5,18 +5,22 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.NonDet;
+
 /** The contract: {@code o1.equals(o2) ==> o1.hashCode() == o2.hashCode()}. */
 public final class EqualsHashcode extends ObjectContract {
-  private static final EqualsHashcode instance = new EqualsHashcode();
+  private static final @Det EqualsHashcode instance = new EqualsHashcode();
 
   private EqualsHashcode() {}
 
-  public static EqualsHashcode getInstance() {
+  public static @Det EqualsHashcode getInstance() {
     return instance;
   }
 
   @Override
-  public boolean evaluate(Object... objects) {
+  @SuppressWarnings("determinism:override.return.invalid")
+  public @NonDet boolean evaluate(Object... objects) {
 
     Object o1 = objects[0];
     Object o2 = objects[1];
@@ -34,7 +38,7 @@ public final class EqualsHashcode extends ObjectContract {
       new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

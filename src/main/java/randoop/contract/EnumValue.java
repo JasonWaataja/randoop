@@ -5,6 +5,9 @@ import java.util.Objects;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * A check for a particular value of an {@code Enum}. To be used in regression tests when {@code
  * Enum} values are created.
@@ -27,12 +30,13 @@ public final class EnumValue extends ObjectContract {
     if (!(obj instanceof EnumValue)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     EnumValue enumValue = (EnumValue) obj;
     return value.equals(enumValue.value);
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(value);
   }
 
@@ -47,6 +51,7 @@ public final class EnumValue extends ObjectContract {
   }
 
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public TypeTuple getInputTypes() {
     return new TypeTuple(Collections.singletonList(type));
   }

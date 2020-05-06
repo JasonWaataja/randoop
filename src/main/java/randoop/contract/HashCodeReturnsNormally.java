@@ -5,13 +5,16 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** Checks that calling hashCode() on an object does not throw an exception. */
 public final class HashCodeReturnsNormally extends ObjectContract {
-  private static final HashCodeReturnsNormally instance = new HashCodeReturnsNormally();
+  private static final @Det HashCodeReturnsNormally instance = new HashCodeReturnsNormally();
 
   private HashCodeReturnsNormally() {}
 
-  public static HashCodeReturnsNormally getInstance() {
+  public static @Det HashCodeReturnsNormally getInstance() {
     return instance;
   }
 
@@ -38,7 +41,7 @@ public final class HashCodeReturnsNormally extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

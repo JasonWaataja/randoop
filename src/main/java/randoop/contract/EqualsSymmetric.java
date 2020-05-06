@@ -5,18 +5,21 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** The contract: {@code o1.equals(o2) ==> o2.equals(o1)}. */
 public final class EqualsSymmetric extends ObjectContract {
-  private static final EqualsSymmetric instance = new EqualsSymmetric();
+  private static final @Det EqualsSymmetric instance = new EqualsSymmetric();
 
   private EqualsSymmetric() {}
 
-  public static EqualsSymmetric getInstance() {
+  public static @Det EqualsSymmetric getInstance() {
     return instance;
   }
 
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
 
     Object o1 = objects[0];
     Object o2 = objects[1];
@@ -34,7 +37,7 @@ public final class EqualsSymmetric extends ObjectContract {
       new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

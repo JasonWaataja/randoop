@@ -5,19 +5,22 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** The contract: {@code x0.equals(x0)==true}. */
 public final class EqualsReflexive extends ObjectContract {
-  private static final EqualsReflexive instance = new EqualsReflexive();
+  private static final @Det EqualsReflexive instance = new EqualsReflexive();
 
   private EqualsReflexive() {}
 
-  public static EqualsReflexive getInstance() {
+  public static @Det EqualsReflexive getInstance() {
     return instance;
   }
 
   @SuppressWarnings("SelfEquals")
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     assert objects != null && objects.length == 1;
     Object o = objects[0];
     assert o != null;
@@ -34,7 +37,7 @@ public final class EqualsReflexive extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

@@ -5,21 +5,24 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks the transitivity of equals for an object {@code (x0.equals(x1) &&
  * x1.equals(x2)) ==> x0.equals(x2)}.
  */
 public class EqualsTransitive extends ObjectContract {
-  private static final EqualsTransitive instance = new EqualsTransitive();
+  private static final @Det EqualsTransitive instance = new EqualsTransitive();
 
   private EqualsTransitive() {}
 
-  public static EqualsTransitive getInstance() {
+  public static @Det EqualsTransitive getInstance() {
     return instance;
   }
 
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     Object o1 = objects[0];
     Object o2 = objects[1];
     Object o3 = objects[2];
@@ -38,7 +41,7 @@ public class EqualsTransitive extends ObjectContract {
           Arrays.asList(JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE, JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

@@ -5,13 +5,15 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /** Checks that calling equals() on an object does not throw an exception. */
 public final class EqualsReturnsNormally extends ObjectContract {
-  private static final EqualsReturnsNormally instance = new EqualsReturnsNormally();
+  private static final @Det EqualsReturnsNormally instance = new EqualsReturnsNormally();
 
   private EqualsReturnsNormally() {}
 
-  public static EqualsReturnsNormally getInstance() {
+  public static @Det EqualsReturnsNormally getInstance() {
     return instance;
   }
 
@@ -39,7 +41,7 @@ public final class EqualsReturnsNormally extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 
