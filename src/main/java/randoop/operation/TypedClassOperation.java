@@ -16,6 +16,8 @@ import randoop.types.Type;
 import randoop.types.TypeTuple;
 import randoop.types.TypeVariable;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * Represents a TypedOperation and its declaring class. Examples of TypedOperations that have a
  * declaring class are a method call or field access.
@@ -77,7 +79,7 @@ public class TypedClassOperation extends TypedOperation {
    * <p>Applies the substitution to the declaring type, all input types, and the output type.
    */
   @Override
-  public TypedClassOperation substitute(Substitution substitution) {
+  public @Det TypedClassOperation substitute(@Det TypedClassOperation this, @Det Substitution substitution) {
     if (substitution.isEmpty()) {
       return this;
     }
@@ -88,7 +90,7 @@ public class TypedClassOperation extends TypedOperation {
   }
 
   @Override
-  public TypedClassOperation applyCaptureConversion() {
+  public @Det TypedClassOperation applyCaptureConversion(@Det TypedClassOperation this) {
     TypeTuple inputTypes = this.getInputTypes().applyCaptureConversion();
     Type outputType = this.getOutputType();
     return new TypedClassOperation(this.getOperation(), declaringType, inputTypes, outputType);
