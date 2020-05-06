@@ -15,6 +15,10 @@ import randoop.types.Type;
 import randoop.types.TypeTuple;
 import randoop.util.StringEscapeUtils;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * Represents a value that either cannot (primitive or null values), or we don't care to have
  * (String, Class) be a receiver for a method call as an {@link Operation}.
@@ -101,6 +105,7 @@ public final class NonreceiverTerm extends CallableOperation {
     if (!(o instanceof NonreceiverTerm)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     NonreceiverTerm other = (NonreceiverTerm) o;
 
     return this.type.equals(other.type) && Objects.equals(this.value, other.value);
@@ -108,13 +113,13 @@ public final class NonreceiverTerm extends CallableOperation {
 
   /** Returns a hash code value for this NonreceiverTerm. */
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return this.type.hashCode() + (this.value == null ? 0 : this.value.hashCode());
   }
 
   /** Returns string representation of this NonreceiverTerm. */
   @Override
-  public String toString() {
+  public @NonDet String toString() {
     if (type.equals(JavaTypes.CLASS_TYPE)) {
       return ((Class<?>) value).getName() + ".class";
     }
@@ -122,7 +127,8 @@ public final class NonreceiverTerm extends CallableOperation {
   }
 
   @Override
-  public String getName() {
+  @SuppressWarnings("determinism:override.return.invalid")
+  public @NonDet String getName() {
     return this.toString();
   }
 
@@ -132,6 +138,7 @@ public final class NonreceiverTerm extends CallableOperation {
    * @return {@link NormalExecution} object enclosing value of this non-receiver term
    */
   @Override
+  @SuppressWarnings("determinism:override.return.invalid")
   public ExecutionOutcome execute(Object[] statementInput) {
     assert statementInput.length == 0;
     return new NormalExecution(this.value, 0);
@@ -151,7 +158,7 @@ public final class NonreceiverTerm extends CallableOperation {
       Type declaringType,
       TypeTuple inputTypes,
       Type outputType,
-      List<Variable> inputVars,
+      List<@PolyDet Variable> inputVars,
       StringBuilder b) {
     b.append(Value.toCodeString(getValue()));
   }
@@ -183,7 +190,7 @@ public final class NonreceiverTerm extends CallableOperation {
    * @param type the type of value desired
    * @return a {@link NonreceiverTerm} with a canonical representative of the given type
    */
-  static NonreceiverTerm createNullOrZeroTerm(Type type) {
+  static @Det NonreceiverTerm createNullOrZeroTerm(@Det Type type) {
     if (type.isBoxedPrimitive()) {
       type = ((NonParameterizedType) type).toPrimitive();
     }
@@ -234,7 +241,8 @@ public final class NonreceiverTerm extends CallableOperation {
    * @return string representation of primitive, String or null value
    */
   @Override
-  public String toParsableString(Type declaringType, TypeTuple inputTypes, Type outputType) {
+  @SuppressWarnings("determinism:override.return.invalid")
+  public @NonDet String toParsableString(Type declaringType, TypeTuple inputTypes, Type outputType) {
 
     String valStr;
     if (value == null) {
@@ -262,7 +270,7 @@ public final class NonreceiverTerm extends CallableOperation {
    * @throws OperationParseException if string does not represent valid object
    */
   @SuppressWarnings("signature") // parsing
-  public static TypedOperation parse(String s) throws OperationParseException {
+  public static @Det TypedOperation parse(@Det String s) throws OperationParseException {
     if (s == null) throw new IllegalArgumentException("s cannot be null.");
     int colonIdx = s.indexOf(':');
     if (colonIdx == -1) {
@@ -459,7 +467,7 @@ public final class NonreceiverTerm extends CallableOperation {
       }
     }
 
-    NonreceiverTerm nonreceiverTerm = new NonreceiverTerm(type, value);
+    @Det NonreceiverTerm nonreceiverTerm = new NonreceiverTerm(type, value);
     return new TypedTermOperation(nonreceiverTerm, new TypeTuple(), type);
   }
 
