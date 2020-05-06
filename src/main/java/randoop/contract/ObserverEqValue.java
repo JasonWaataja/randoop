@@ -12,6 +12,10 @@ import randoop.types.JavaTypes;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * A check recording the value that an observer method returned during execution, e.g. a check
  * recording that a collection's {@code size()} method returned {@code 3}.
@@ -38,16 +42,17 @@ public final class ObserverEqValue extends ObjectContract {
     if (!(o instanceof ObserverEqValue)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     ObserverEqValue other = (ObserverEqValue) o;
     return observer.equals(other.observer) && Objects.equals(value, other.value);
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(observer, value);
   }
 
-  public ObserverEqValue(TypedOperation observer, Object value) {
+  public ObserverEqValue(@PolyDet TypedOperation observer, @Det Object value) {
     assert observer.isMethodCall() : "Observer must be MethodCall, got " + observer;
     this.observer = observer;
     this.value = value;
@@ -65,7 +70,7 @@ public final class ObserverEqValue extends ObjectContract {
    * @param value the value to be tested
    * @return true if the argument can be written as a literal in Java source code
    */
-  public static boolean isLiteralValue(Object value) {
+  public static boolean isLiteralValue(@Det Object value) {
     if (value == null) {
       return true;
     }
@@ -91,7 +96,7 @@ public final class ObserverEqValue extends ObjectContract {
     // representation, but this works for this simple case.
     String call;
     {
-      CallableOperation operation = observer.getOperation();
+      @PolyDet CallableOperation operation = observer.getOperation();
       String methodname = operation.getName();
       if (operation.isStatic()) {
         Executable m = (Executable) operation.getReflectionObject();
@@ -139,7 +144,7 @@ public final class ObserverEqValue extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 
