@@ -40,7 +40,7 @@ public final class InitializedArrayCreation extends CallableOperation {
    * @param length number of objects allowed in the array
    * @param arrayType the type of array this operation creates
    */
-  InitializedArrayCreation(ArrayType arrayType, int length) {
+  InitializedArrayCreation(@Det ArrayType arrayType, @Det int length) {
     assert length >= 0 : "array length may not be negative: " + length;
 
     this.elementType = arrayType.getComponentType();
