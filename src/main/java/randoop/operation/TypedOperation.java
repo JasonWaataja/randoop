@@ -378,7 +378,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
    *     enumClass}
    */
   private static TypedClassOperation getAnonEnumOperation(
-      Method method, List<Type> methodParamTypes, @Det Class<?> enumClass) {
+      @Det Method method, @Det List<@Det Type> methodParamTypes, @Det Class<?> enumClass) {
     @Det ClassOrInterfaceType enumType = ClassOrInterfaceType.forClass(enumClass);
 
     /*
@@ -390,7 +390,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
     for (Method m : enumClass.getMethods()) {
       if (m.getName().equals(method.getName())
           && m.getGenericParameterTypes().length == method.getGenericParameterTypes().length) {
-        List<Type> paramTypes = new ArrayList<>();
+        @Det List<@Det Type> paramTypes = new ArrayList<>();
         MethodCall op = new MethodCall(m);
         if (!op.isStatic()) {
           paramTypes.add(enumType);
@@ -487,7 +487,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
    * @param type the type of the initialization
    * @return the initialization operation
    */
-  public static TypedOperation createNullOrZeroInitializationForType(Type type) {
+  public static @Det TypedOperation createNullOrZeroInitializationForType(@Det Type type) {
     return TypedOperation.createNonreceiverInitialization(
         NonreceiverTerm.createNullOrZeroTerm(type));
   }
@@ -632,7 +632,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
      * @param ranking value associated with the operation
      * @param operation wrapped operation
      */
-    public RankedTypeOperation(double ranking, TypedClassOperation operation) {
+    public RankedTypeOperation(double ranking, @PolyDet TypedClassOperation operation) {
       this.ranking = ranking;
       this.operation = operation;
     }

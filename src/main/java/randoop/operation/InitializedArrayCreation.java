@@ -12,6 +12,7 @@ import randoop.types.TypeTuple;
 
 import org.checkerframework.checker.determinism.qual.NonDet;
 import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
 
 /**
  * InitializedArrayCreation is an {@link Operation} representing the construction of a
@@ -88,7 +89,7 @@ public final class InitializedArrayCreation extends CallableOperation {
       Type declaringType,
       TypeTuple inputTypes,
       Type outputType,
-      List<Variable> inputVars,
+      List<@PolyDet Variable> inputVars,
       StringBuilder b) {
     if (inputVars.size() > length) {
       throw new IllegalArgumentException(

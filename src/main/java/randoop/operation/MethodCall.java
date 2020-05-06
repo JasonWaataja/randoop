@@ -90,7 +90,7 @@ public final class MethodCall extends CallableOperation {
       Type declaringType,
       TypeTuple inputTypes,
       Type outputType,
-      List<Variable> inputVars,
+      List<@PolyDet Variable> inputVars,
       StringBuilder sb) {
 
     String receiverString = isStatic() ? null : inputVars.get(0).getName();

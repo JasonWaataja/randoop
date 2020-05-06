@@ -90,7 +90,7 @@ public final class ConstructorCall extends CallableOperation {
       Type declaringType,
       TypeTuple inputTypes,
       Type outputType,
-      List<Variable> inputVars,
+      List<@PolyDet Variable> inputVars,
       StringBuilder b) {
     assert declaringType instanceof ClassOrInterfaceType : "constructor must be member of class";
 

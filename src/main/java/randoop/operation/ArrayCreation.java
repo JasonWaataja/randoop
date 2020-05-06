@@ -83,7 +83,7 @@ public class ArrayCreation extends CallableOperation {
           Type declaringType,
           TypeTuple inputTypes,
           Type outputType,
-          List<Variable> inputVars,
+          List<@PolyDet Variable> inputVars,
           StringBuilder b) {
     @PolyDet("up") Variable inputVar = inputVars.get(0);
     b.append("new").append(" ").append(this.elementType.getName());

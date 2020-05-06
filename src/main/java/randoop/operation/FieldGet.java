@@ -79,7 +79,7 @@ public class FieldGet extends CallableOperation {
           Type declaringType,
           TypeTuple inputTypes,
           Type outputType,
-          List<Variable> inputVars,
+          List<@PolyDet Variable> inputVars,
           StringBuilder b) {
     b.append(field.toCode(declaringType, inputVars));
   }

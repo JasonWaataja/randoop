@@ -7,6 +7,8 @@ import randoop.sequence.Variable;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * An {@link Operation} to perform an explicit cast. NOTE: there is no actual checking of the types
  * being done. This operation is only used in contexts where the cast is known to be unchecked.
@@ -58,7 +60,7 @@ class UncheckedCast extends CallableOperation {
       Type declaringType,
       TypeTuple inputTypes,
       Type outputType,
-      List<Variable> inputVars,
+      List<@PolyDet Variable> inputVars,
       StringBuilder b) {
     b.append("(").append(type.getName()).append(")");
     int i = 0;

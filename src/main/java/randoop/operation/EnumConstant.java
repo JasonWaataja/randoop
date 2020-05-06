@@ -91,7 +91,7 @@ public class EnumConstant extends CallableOperation {
           Type declaringType,
           TypeTuple inputTypes,
           Type outputType,
-          List<Variable> inputVars,
+          List<@PolyDet Variable> inputVars,
           StringBuilder b) {
     b.append(declaringType.getName()).append(".").append(this.value.name());
   }
