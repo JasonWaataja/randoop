@@ -5,6 +5,9 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * The contract: {@code x == null}.
  *
@@ -29,7 +32,7 @@ public final class IsNull extends ObjectContract {
   }
 
   @Override
-  public boolean evaluate(Object... objects) throws Throwable {
+  public @PolyDet("up") boolean evaluate(Object... objects) throws Throwable {
     assert objects.length == 1;
     return objects[0] == null;
   }
@@ -43,7 +46,7 @@ public final class IsNull extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 
