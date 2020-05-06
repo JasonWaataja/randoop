@@ -11,6 +11,9 @@ import randoop.operation.TypedOperation;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.NonDet;
+
 /**
  * Represents the contract that an object must conform to its representation invariant, as expressed
  * in a user-supplied representation check method. A rep check method for a class must be declared
@@ -23,7 +26,7 @@ import randoop.types.TypeTuple;
 public final class CheckRepContract extends ObjectContract {
 
   public final Method checkRepMethod;
-  private final TypedClassOperation operation;
+  private final @Det TypedClassOperation operation;
   boolean returnsBoolean; // derived from checkRepMethod
   public final Class<?> declaringClass; // derived from checkRepMethod
 
@@ -35,12 +38,13 @@ public final class CheckRepContract extends ObjectContract {
     if (!(o instanceof CheckRepContract)) {
       return false; // I collected the results of get_value()
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     CheckRepContract other = (CheckRepContract) o;
     return checkRepMethod.equals(other.checkRepMethod);
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(checkRepMethod);
   }
 
