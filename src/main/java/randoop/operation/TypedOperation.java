@@ -300,7 +300,7 @@ public abstract class TypedOperation implements Operation, Comparable<TypedOpera
   public abstract @Det TypedOperation applyCaptureConversion(@Det TypedOperation this);
 
   // Implementation note: clients mutate the list, so don't use Collections.emptyList.
-  public List<TypeVariable> getTypeParameters() {
+  public @PolyDet List<@PolyDet TypeVariable> getTypeParameters() {
     return new @PolyDet ArrayList<>();
   }
 
