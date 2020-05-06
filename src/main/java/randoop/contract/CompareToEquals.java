@@ -5,23 +5,26 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks that compareTo is consistent with equals.
  *
  * <pre>(x0.compareTo(x1) == 0) == x0.equals(x1)</pre>
  */
 public class CompareToEquals extends ObjectContract {
-  private static final CompareToEquals instance = new CompareToEquals();
+  private static final @Det CompareToEquals instance = new CompareToEquals();
 
   private CompareToEquals() {}
 
-  public static CompareToEquals getInstance() {
+  public static @Det CompareToEquals getInstance() {
     return instance;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     Object o1 = objects[0];
     Object o2 = objects[1];
 
@@ -42,7 +45,7 @@ public class CompareToEquals extends ObjectContract {
       new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

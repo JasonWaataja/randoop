@@ -5,21 +5,24 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks that an object is reflexive over compareTo. {@code x0.compareTo(x0) == 0}.
  */
 public class CompareToReflexive extends ObjectContract {
-  private static final CompareToReflexive instance = new CompareToReflexive();
+  private static final @Det CompareToReflexive instance = new CompareToReflexive();
 
   private CompareToReflexive() {}
 
-  public static CompareToReflexive getInstance() {
+  public static @Det CompareToReflexive getInstance() {
     return instance;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes", "SelfComparison"})
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     assert objects != null && objects.length == 1;
     // Get first and only object
     Object o1 = objects[0];
@@ -41,7 +44,7 @@ public class CompareToReflexive extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

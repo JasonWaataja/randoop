@@ -5,6 +5,9 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks the substitutability property of compareTo for equals.
  *
@@ -12,17 +15,17 @@ import randoop.types.TypeTuple;
  * &rarr; (Math.signum(x0.compareTo(x2)) == Math.signum(x1.compareTo(x2)))</pre>
  */
 public class CompareToSubs extends ObjectContract {
-  private static final CompareToSubs instance = new CompareToSubs();
+  private static final @Det CompareToSubs instance = new CompareToSubs();
 
   private CompareToSubs() {}
 
-  public static CompareToSubs getInstance() {
+  public static @Det CompareToSubs getInstance() {
     return instance;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     Object o1 = objects[0];
     Object o2 = objects[1];
     Object o3 = objects[2];
@@ -52,7 +55,7 @@ public class CompareToSubs extends ObjectContract {
               JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

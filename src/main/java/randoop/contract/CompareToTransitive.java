@@ -5,6 +5,9 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks the transitivity of the compare to method.
  *
@@ -14,17 +17,17 @@ import randoop.types.TypeTuple;
  * }</pre>
  */
 public class CompareToTransitive extends ObjectContract {
-  private static final CompareToTransitive instance = new CompareToTransitive();
+  private static final @Det CompareToTransitive instance = new CompareToTransitive();
 
   private CompareToTransitive() {}
 
-  public static CompareToTransitive getInstance() {
+  public static @Det CompareToTransitive getInstance() {
     return instance;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     Object o1 = objects[0];
     Object o2 = objects[1];
     Object o3 = objects[2];
@@ -54,7 +57,7 @@ public class CompareToTransitive extends ObjectContract {
               JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

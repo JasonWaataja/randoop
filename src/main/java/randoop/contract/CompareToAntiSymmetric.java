@@ -5,23 +5,26 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /**
  * The contract: Checks that an object is antisymmetric over compareTo.
  *
  * <pre>Math.signum(x0.compareTo(x1)) == -Math.signum(x1.compareTo(x0))</pre>
  */
 public class CompareToAntiSymmetric extends ObjectContract {
-  private static final CompareToAntiSymmetric instance = new CompareToAntiSymmetric();
+  private static final @Det CompareToAntiSymmetric instance = new CompareToAntiSymmetric();
 
   private CompareToAntiSymmetric() {}
 
-  public static CompareToAntiSymmetric getInstance() {
+  public static @Det CompareToAntiSymmetric getInstance() {
     return instance;
   }
 
   @SuppressWarnings({"unchecked", "rawtypes"})
   @Override
-  public boolean evaluate(Object... objects) {
+  public @PolyDet("up") boolean evaluate(Object... objects) {
     Object o1 = objects[0];
     Object o2 = objects[1];
 
@@ -47,7 +50,7 @@ public class CompareToAntiSymmetric extends ObjectContract {
       new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE, JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

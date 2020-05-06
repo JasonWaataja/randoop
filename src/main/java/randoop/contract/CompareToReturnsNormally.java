@@ -5,13 +5,16 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** Checks that calling compareTo() on an object does not throw an exception. */
 public class CompareToReturnsNormally extends ObjectContract {
-  private static final CompareToReturnsNormally instance = new CompareToReturnsNormally();
+  private static final @Det CompareToReturnsNormally instance = new CompareToReturnsNormally();
 
   private CompareToReturnsNormally() {}
 
-  public static CompareToReturnsNormally getInstance() {
+  public static @Det CompareToReturnsNormally getInstance() {
     return instance;
   }
 
@@ -41,7 +44,7 @@ public class CompareToReturnsNormally extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COMPARABLE_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

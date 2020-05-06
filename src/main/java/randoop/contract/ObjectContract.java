@@ -19,6 +19,9 @@ import randoop.types.TypeTuple;
 import randoop.util.Log;
 import randoop.util.TimeoutExceededException;
 
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * An object contract represents a property that must hold of any object of a given class. It is
  * used as part of the oracle (assertion) for a unit test: the oracle expects that every object
@@ -51,7 +54,7 @@ public abstract class ObjectContract {
    *
    * @return the input types for this contract
    */
-  public abstract TypeTuple getInputTypes();
+  public abstract @Det TypeTuple getInputTypes();
 
   /**
    * Evaluates the contract on the given values. Returns {@code false} if the contract was violated.
@@ -64,7 +67,7 @@ public abstract class ObjectContract {
    * @return false if the contract is violated, true otherwise
    * @throws Throwable if an exception is thrown in evaluation
    */
-  public abstract boolean evaluate(Object... objects) throws Throwable;
+  public abstract @PolyDet("up") boolean evaluate(Object... objects) throws Throwable;
 
   /**
    * A string that will be inserted as a comment in the test before the code corresponding to this
