@@ -8,6 +8,10 @@ import randoop.types.JavaTypes;
 import randoop.types.Type;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.NonDet;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+import org.checkerframework.checker.determinism.qual.Det;
+
 /**
  * A check recording the value of a primitive value obtained during execution, (e.g. {@code var3 ==
  * 1} where {@code var3} is an integer-valued variable in a Randoop test).
@@ -39,12 +43,13 @@ public final class PrimValue extends ObjectContract {
     if (!(o instanceof PrimValue)) {
       return false;
     }
+    @SuppressWarnings("determinism:invariant.cast.unsafe")
     PrimValue other = (PrimValue) o;
     return value.equals(other.value);
   }
 
   @Override
-  public int hashCode() {
+  public @NonDet int hashCode() {
     return Objects.hash(value);
   }
 
@@ -52,7 +57,7 @@ public final class PrimValue extends ObjectContract {
    * @param value the value for the expression: a primitive value or string
    * @param printMode the print mode in which the check is written as an assertion
    */
-  public PrimValue(Object value, PrintMode printMode) {
+  public PrimValue(Object value, @PolyDet PrintMode printMode) {
     if (value == null) {
       throw new IllegalArgumentException("value cannot be null");
     }
@@ -80,7 +85,7 @@ public final class PrimValue extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 

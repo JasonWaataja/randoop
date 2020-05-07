@@ -6,13 +6,16 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+import org.checkerframework.checker.determinism.qual.PolyDet;
+
 /** The contract: {@code c.toArray().length == c.size()} for all Collections c. */
 public final class SizeToArrayLength extends ObjectContract {
-  private static final SizeToArrayLength instance = new SizeToArrayLength();
+  private static final @Det SizeToArrayLength instance = new SizeToArrayLength();
 
   private SizeToArrayLength() {}
 
-  public static SizeToArrayLength getInstance() {
+  public static @Det SizeToArrayLength getInstance() {
     return instance;
   }
 
@@ -21,7 +24,8 @@ public final class SizeToArrayLength extends ObjectContract {
     assert objects != null && objects.length == 1;
     Object o = objects[0];
     if (o instanceof Collection) {
-      Collection<?> c = (Collection<?>) o;
+      @SuppressWarnings("determinism:invariant.cast.unsafe")
+      @PolyDet("up") Collection<? extends @PolyDet("up") Object> c = (Collection<? extends @PolyDet("up") Object>) o;
       assert c != null;
       return c.size() == c.toArray().length;
     }
@@ -37,7 +41,7 @@ public final class SizeToArrayLength extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.COLLECTION_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 
