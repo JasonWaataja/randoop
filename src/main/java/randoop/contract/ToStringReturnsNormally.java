@@ -5,6 +5,8 @@ import randoop.Globals;
 import randoop.types.JavaTypes;
 import randoop.types.TypeTuple;
 
+import org.checkerframework.checker.determinism.qual.Det;
+
 /** Checks that calling toString() on an object does not throw an exception. */
 public final class ToStringReturnsNormally extends ObjectContract {
 
@@ -40,7 +42,7 @@ public final class ToStringReturnsNormally extends ObjectContract {
   static TypeTuple inputTypes = new TypeTuple(Arrays.asList(JavaTypes.OBJECT_TYPE));
 
   @Override
-  public TypeTuple getInputTypes() {
+  public @Det TypeTuple getInputTypes() {
     return inputTypes;
   }
 
